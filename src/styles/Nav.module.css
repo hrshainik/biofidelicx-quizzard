@@ -1,0 +1,27 @@
+.nav {
+  display: flex;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-bottom: 1px solid #e5e5e5;
+  z-index: 1;
+}
+
+.nav ul {
+  width: 50%;
+  height: 60px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav ul:first-child {
+  margin-left: 30px;
+}
+
+.nav ul li {
+  font-weight: 600;
+}
