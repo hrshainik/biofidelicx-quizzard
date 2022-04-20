@@ -1,5 +1,6 @@
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
+import Signup from "./pages/Signup";
 import "./styles/App.css";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <>
       <Layout>
         <Home />
+        <Signup />
       </Layout>
     </>
   );
