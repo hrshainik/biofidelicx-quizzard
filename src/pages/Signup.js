@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import signupImage from "../assets/img/signup.svg";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
@@ -20,6 +20,8 @@ const Signup = () => {
 
   const { signup } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const Signup = () => {
       setError("");
       setLoading(true);
       await signup(email, password, username);
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (err) {
       setLoading(false);
       setError("Failed to create an account!");

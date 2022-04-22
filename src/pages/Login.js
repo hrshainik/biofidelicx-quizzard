@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImage from "../assets/img/login.svg";
 import Button from "../components/Button";
 import Form from "../components/Form";
@@ -16,6 +16,8 @@ const Login = () => {
 
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ const Login = () => {
       setError("");
       setLoading(true);
       await login(email, password);
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (err) {
       setLoading(false);
       setError("Failed to login!");
