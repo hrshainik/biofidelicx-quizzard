@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "../styles/Form.module.css";
 
-const Form = ({ children, className }) => {
+const Form = ({ children, className, ...rest }) => {
   return (
-    <form className={`${className} ${classes.form}`} action="#">
+    <form className={`${className} ${classes.form}`} {...rest}>
       {children}
     </form>
   );
