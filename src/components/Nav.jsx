@@ -1,12 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../assets/img/logo-bg.png";
 import classes from "../styles/Nav.module.css";
 import Account from "./Account";
-import Brand from "./Brand";
 
 const Nav = () => {
   return (
     <nav className={classes.nav}>
-      <Brand />
+      <ul>
+        <li>
+          <Link to="/" className={classes.brand}>
+            <img src={logo} alt="Learn with Sumit Logo" />
+            <h3>Learn with Sumit</h3>
+          </Link>
+        </li>
+      </ul>
       <Account />
     </nav>
   );

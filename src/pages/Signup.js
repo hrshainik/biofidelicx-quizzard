@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import signupImage from "../assets/img/signup.svg";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
@@ -32,7 +33,7 @@ const Signup = () => {
           <Button>Submit Now</Button>
 
           <div className="info">
-            Already have an account? <a href="login.html">Login</a> instead.
+            Already have an account? <Link to="/login">Login</Link> instead.
           </div>
         </Form>
       </div>

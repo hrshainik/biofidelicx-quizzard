@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "../styles/ProgressBar.module.css";
 import Button from "./Button";
 
@@ -14,7 +15,7 @@ const ProgressBar = () => {
           <div className={classes.progress} style={{ width: "40%" }}></div>
         </div>
       </div>
-      <a href="result.html">
+      <Link to="/result">
         {/* <button className={`${classes.next} button`}>
           <span>Next Question</span>
           <span className="material-icons-outlined"> arrow_forward </span>
@@ -23,7 +24,7 @@ const ProgressBar = () => {
           <span>Next Question</span>
           <span className="material-icons-outlined"> arrow_forward </span>
         </Button>
-      </a>
+      </Link>
     </div>
   );
 };
