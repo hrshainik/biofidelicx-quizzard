@@ -29,7 +29,7 @@ const Signup = () => {
 
           <Checkbox text="I agree to the Terms & Conditions" />
 
-          <Button text="Submit now" />
+          <Button>Submit Now</Button>
 
           <div className="info">
             Already have an account? <a href="login.html">Login</a> instead.

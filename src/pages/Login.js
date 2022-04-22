@@ -12,25 +12,6 @@ const Login = () => {
       <h1>Login to your account</h1>
       <div className="column">
         <Illustration image={loginImage} />
-        {/* <form className="login form" action="#">
-          <div className="textInput">
-            <input type="text" placeholder="Enter email" />
-            <span className="material-icons-outlined"> alternate_email </span>
-          </div>
-
-          <div className="textInput">
-            <input type="password" placeholder="Enter password" />
-            <span className="material-icons-outlined"> lock </span>
-          </div>
-
-          <button className="button">
-            <span>Submit now</span>
-          </button>
-
-          <div className="info">
-            Don't have an account? <a href="signup.html">Signup</a> instead.
-          </div>
-        </form> */}
         <Form className={classes.login}>
           <TextInput
             type="email"
@@ -38,7 +19,7 @@ const Login = () => {
             icon="alternate_email"
           />
           <TextInput type="password" placeholder="Enter password" icon="lock" />
-          <Button text="Submit now" />
+          <Button>Submit Now</Button>
           <div className="info">
             Don't have an account? <a href="signup.html">Signup</a> instead.
           </div>
