@@ -1,10 +1,10 @@
 import React from "react";
-import Videos from "../components/Videos";
+import Quizzes from "../components/Quizzes";
 
 const Home = () => {
   return (
     <div>
-      <Videos />
+      <Quizzes />
     </div>
   );
 };

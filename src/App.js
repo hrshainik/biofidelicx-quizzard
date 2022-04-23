@@ -19,7 +19,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route
-              path="/quiz"
+              path="/quiz/:id"
               element={
                 <PrivateRoute>
                   <Quiz />
@@ -32,6 +32,14 @@ function App() {
                 <PrivateRoute>
                   <Result />
                 </PrivateRoute>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>There's nothing here!</p>
+                </main>
               }
             />
           </Routes>

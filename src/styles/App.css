@@ -8,6 +8,46 @@
   --questionBG: #e4e8ee;
   --fontPrimary: #002333;
   --active: #2dbf64;
+  --clr1-50: #f2f3f5;
+  --clr1-100: #e6e7ea;
+  --clr1-200: #c0c4cc;
+  --clr1-300: #9aa0ad;
+  --clr1-400: #4f596f;
+  --clr1-500: #031231;
+  --clr1-600: #03102c;
+  --clr1-700: #020e25;
+  --clr1-800: #020b1d;
+  --clr1-900: #010918;
+  --clr2-50: #f3fffd;
+  --clr2-100: #e6fffb;
+  --clr2-200: #c1fff6;
+  --clr2-300: #9bfff1;
+  --clr2-400: #50ffe6;
+  --clr2-500: #05ffdb;
+  --clr2-600: #05e6c5;
+  --clr2-700: #04bfa4;
+  --clr2-800: #039983;
+  --clr2-900: #027d6b;
+  --clr3-50: #f3fafb;
+  --clr3-100: #e6f6f8;
+  --clr3-200: #c1e8ed;
+  --clr3-300: #9bd9e3;
+  --clr3-400: #50bdcd;
+  --clr3-500: #05a1b8;
+  --clr3-600: #0591a6;
+  --clr3-700: #04798a;
+  --clr3-800: #03616e;
+  --clr3-900: #024f5a;
+  --clr4-50: #FFFFFF;
+  --clr4-100: #FFFFFF;
+  --clr4-200: #FFFFFF;
+  --clr4-300: #FFFFFF;
+  --clr4-400: #FFFFFF;
+  --clr4-500: #FFFFFF;
+  --clr4-600: #e6e6e6;
+  --clr4-700: #bfbfbf;
+  --clr4-800: #999999;
+  --clr4-900: #7d7d7d;
 }
 
 * {

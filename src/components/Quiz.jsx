@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classes from "../styles/Video.module.css";
 
-const Video = ({ title, noq, id }) => {
+const Quiz = ({ title, noq, id }) => {
   return (
-    <Link to="/quiz">
+    <Link to={`/quiz/${id}`}>
       <div className={classes.video}>
         <img
           src={`http://img.youtube.com/vi/${id}/maxresdefault.jpg`}
@@ -20,4 +20,4 @@ const Video = ({ title, noq, id }) => {
   );
 };
 
-export default Video;
+export default Quiz;
