@@ -9,6 +9,7 @@ const app = initializeApp({
   messagingSenderId: process.env.REACT_APP_MSG_SENDER_ID,
   appId: process.env.REACT_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
 });
 
 export default app;
