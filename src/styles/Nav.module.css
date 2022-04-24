@@ -1,11 +1,11 @@
 .nav {
   display: flex;
-  background-color: #fff;
+  background-color: var(--clr1-400);
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--clr2-100);
   z-index: 1;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .nav .brand img {
-  width: 32px;
+  height: 40px;
   margin-right: 10px;
 }
 

@@ -1,5 +1,5 @@
 .button {
-  background: var(--successGreen);
+  background: var(--clr2-500);
   color: var(--fontPrimary);
   padding: 0.6rem 1.2rem;
   font-weight: 600;
@@ -16,7 +16,7 @@
 }
 
 .button:hover {
-  background: var(--fontPrimary);
+  background: var(--clr3-400);
   color: #fff;
 }
 

@@ -1,9 +1,13 @@
 .main {
   width: 100%;
-  padding: 4rem 0;
+  padding: 4rem 0 0 0;
 }
 
 .container {
   width: 90%;
   margin: 2rem auto;
+  min-height: calc(100vh - 128px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

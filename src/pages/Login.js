@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import loginImage from "../assets/img/login.svg";
+import loginImage from "../assets/img/login_re_4vu2.svg";
 import Button from "../components/Button";
 import Form from "../components/Form";
 import Illustration from "../components/Illustration";
@@ -35,10 +35,11 @@ const Login = () => {
 
   return (
     <>
-      <h1>Login to your account</h1>
+      <h1>Welcome Back!</h1>
       <div className="column">
         <Illustration image={loginImage} />
         <Form className={classes.login} onSubmit={handleSubmit}>
+          <h2>Login</h2>
           <TextInput
             type="email"
             placeholder="Enter email"

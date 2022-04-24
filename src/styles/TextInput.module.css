@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   border-radius: 5px;
-  border: 1px solid #e5e5e5;
+  /* border: 1px solid var(--clr2-500); */
   padding: 2px;
 }
 
@@ -16,8 +16,8 @@
   width: 100%;
   padding: 0.3rem 0.7rem;
   background-color: #fff;
-  font-size: 16px;
-  font-weight: 500;
+  font: var(--text-m);
+  color: var(--clr1-500);
 }
 
 .textInput span {
@@ -27,4 +27,5 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: var(--clr1-500);
 }

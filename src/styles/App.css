@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Icons+Outlined");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
 
 :root {
   --bodyBackground: #f2f4f8;
@@ -48,23 +48,45 @@
   --clr4-700: #bfbfbf;
   --clr4-800: #999999;
   --clr4-900: #7d7d7d;
+  --h1: 700 38px/46px 'Playfair Display', serif;
+  --h2: 700 30px/40px 'Playfair Display', serif;
+  --h3: 700 24px/32px 'Playfair Display', serif;
+  --h4: 700 20px/28px 'Playfair Display', serif;
+  --h5: 700 18px/26px 'Playfair Display', serif;
+  --text-lb: 700 16px/24px 'Source Sans Pro', sans-serif;
+  --text-l: 400 16px/24px 'Source Sans Pro', sans-serif;
+  --text-mb: 700 14px/18px 'Source Sans Pro', sans-serif;
+  --text-m: 400 14px/18px 'Source Sans Pro', sans-serif;
+  --text-sb: 700 12px/15px 'Source Sans Pro', sans-serif;
+  --text-s: 400 12px/15px 'Source Sans Pro', sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: var(--fontPrimary);
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: var(--clr4-500);
 }
 
 body {
-  background-color: var(--bodyBackground);
+  background-color: var(--clr1-500);
 }
 
 a {
   text-decoration: none;
-  color: blue;
+}
+
+h1 {
+  font: var(--h1);
+}
+
+h2 {
+  font: var(--h2);
+}
+
+h3 {
+  font: var(--h3);
 }
 
 h4 {
@@ -78,6 +100,10 @@ h4 {
 .info {
   margin-top: 1rem;
   text-align: center;
+}
+
+.info a {
+  color: var(--clr2-500);
 }
 
 .error {
@@ -116,4 +142,8 @@ h4 {
   .infinite-scroll-component {
     width: 90%;
   }
+}
+
+.material-icons-outlined {
+  color: var(--clr4-500);
 }

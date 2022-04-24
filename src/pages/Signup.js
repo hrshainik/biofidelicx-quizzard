@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import signupImage from "../assets/img/signup.svg";
+import signupImage from "../assets/img/login_re_4vu2.svg";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Form from "../components/Form";
@@ -43,10 +43,11 @@ const Signup = () => {
 
   return (
     <>
-      <h1>Create an account</h1>
+      <h1>Welcome!</h1>
       <div className="column">
         <Illustration image={signupImage} />
         <Form className={classes.signup} onSubmit={handleSubmit}>
+          <h2>Signup</h2>
           <TextInput
             type="text"
             placeholder="Enter name"
