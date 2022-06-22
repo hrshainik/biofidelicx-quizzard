@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Header } from "../../../components";
+import { Answer, Header, Question } from "../../../components";
 
 const Quiz = () => {
   return (
@@ -8,6 +8,10 @@ const Quiz = () => {
         <title>Quiz</title>
       </Head>
       <Header />
+      <div className="container	mx-auto -mt-10">
+        <Question />
+        <Answer />
+      </div>
     </>
   );
 };

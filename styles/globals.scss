@@ -34,3 +34,29 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #031231;
 }
+
+svg {
+  stroke: #05ffdb;
+}
+
+.box {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset .3s linear;
+}
+
+.check {
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  fill: none;
+  transition: stroke-dashoffset .3s linear;
+}
+
+.reverse {
+  .box {
+      stroke-dashoffset: 320;
+  }
+  .check {
+      stroke-dashoffset: 0;
+  }
+}
