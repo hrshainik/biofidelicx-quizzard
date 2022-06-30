@@ -7,7 +7,6 @@ const Checkbox = ({ value, name, handleRadioClick, isRadioSelected, text }) => {
         value={value}
         className="hidden pointer-events-none"
         id={value}
-        // onClick={isChecked}
         checked={isRadioSelected(`${value}`)}
         onChange={handleRadioClick}
       />
