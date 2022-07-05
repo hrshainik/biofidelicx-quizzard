@@ -1,30 +1,27 @@
-const CategoryCard = () => {
+const CategoryCard = ({ title }) => {
   return (
-    <li className="articles__article">
-      <a className="articles__link">
-        <div className="articles__content articles__content--lhs">
-          <h2 className="articles__title">
-            Sweet roll gingerbread sweet roll jelly
-          </h2>
-          <div className="articles__footer">
-            <p>Cakes</p>
-            <time>1 Jan 2020</time>
-          </div>
-        </div>
-        <div
-          className="articles__content articles__content--rhs"
-          aria-hidden="true"
-        >
-          <h2 className="articles__title">
-            Sweet roll gingerbread sweet roll jelly
-          </h2>
-          <div className="articles__footer">
-            <p>Cakes</p>
-            <time>1 Jan 2020</time>
-          </div>
-        </div>
-      </a>
-    </li>
+    <a
+      href="/blog"
+      className="m-5 relative flex items-end h-48 transition bg-white-500 border-4 border-gray-900 group hover:bg-aquamarine-500"
+    >
+      <span className="absolute inset-0 -translate-x-2 ring-gray-900 -translate-y-2 bg-white-500 ring-4 border-gray-900 -z-10"></span>
+      <span className="absolute inset-0 -translate-x-4 ring-gray-900 -translate-y-4 bg-white-500 ring-4 border-gray-900 -z-20"></span>
+
+      <div className="p-8 lg:group-hover:opacity-0 lg:group-hover:absolute">
+        <p className="text-lg font-bold">{title}</p>
+
+        <p className="mt-1 font-mono text-xs">7 Quizzes</p>
+      </div>
+
+      <div className="absolute p-8 opacity-0 lg:group-hover:relative lg:group-hover:opacity-100">
+        <p className="text-lg font-bold">{title}</p>
+
+        <p className="mt-1 text-xs">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo officiis
+          impedit deleniti odio
+        </p>
+      </div>
+    </a>
   );
 };
 

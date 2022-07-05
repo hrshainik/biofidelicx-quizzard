@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Categories, Header } from "../components";
+import { Categories, Header, QuizCard } from "../components";
 
 export default function Home() {
   return (
@@ -21,7 +21,15 @@ export default function Home() {
       <Header />
       <Categories />
       <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
-        <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8"></div>
+        <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
+          <QuizCard />
+          <QuizCard />
+          <QuizCard />
+          <QuizCard />
+          <QuizCard />
+          <QuizCard />
+          <QuizCard />
+        </div>
         <div className="col-span-1 lg:col-span-4">
           <div className="relative lg:sticky lg:top-20"></div>
         </div>
