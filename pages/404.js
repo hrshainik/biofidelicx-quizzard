@@ -1,5 +1,13 @@
+import Head from "next/head";
+
 const Custom404 = () => {
-  return <div>404</div>;
+  return (
+    <>
+      <Head>
+        <title>Page Not Found - biofidelicX academy</title>
+      </Head>
+    </>
+  );
 };
 
 export default Custom404;

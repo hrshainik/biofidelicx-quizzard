@@ -4,7 +4,16 @@ const Categories = () => {
   return (
     <div>
       <h1>Categories</h1>
-      <CategoryCard />
+      <div className="articles">
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
+        <CategoryCard />
+      </div>
     </div>
   );
 };
