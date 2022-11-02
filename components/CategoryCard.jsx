@@ -9,7 +9,6 @@ const CategoryCard = ({ title, slug }) => {
 
         <div className="p-8 lg:group-hover:opacity-0 lg:group-hover:absolute">
           <p className="text-lg font-bold">{title}</p>
-
           <p className="mt-1 font-mono text-xs">7 Quizzes</p>
         </div>
 
