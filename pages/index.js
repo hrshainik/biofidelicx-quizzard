@@ -34,7 +34,6 @@ export default function Home() {
           <div className="relative lg:sticky lg:top-20"></div>
         </div>
       </div>
-      {/* Popular quizzes */}
     </>
   );
 }

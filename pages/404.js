@@ -6,6 +6,7 @@ const Custom404 = () => {
       <Head>
         <title>Page Not Found - biofidelicX academy</title>
       </Head>
+      <h1>Page Not Found</h1>
     </>
   );
 };
