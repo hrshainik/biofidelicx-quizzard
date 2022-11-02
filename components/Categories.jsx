@@ -55,19 +55,19 @@ const Categories = () => {
           }}
         >
           <SwiperSlide>
-            <CategoryCard title="Molecular Biology" />
+            <CategoryCard title="Molecular Biology" slug="molecular-biology" />
           </SwiperSlide>
           <SwiperSlide>
-            <CategoryCard title="Biology" />
+            <CategoryCard title="Biology" slug="biology" />
           </SwiperSlide>
           <SwiperSlide>
-            <CategoryCard title="Genetics" />
+            <CategoryCard title="Genetics" slug="genetics" />
           </SwiperSlide>
           <SwiperSlide>
-            <CategoryCard title="Biochemistry" />
+            <CategoryCard title="Biochemistry" slug="biochemistry" />
           </SwiperSlide>
           <SwiperSlide>
-            <CategoryCard title="Biotechnology" />
+            <CategoryCard title="Biotechnology" slug="biotechnology" />
           </SwiperSlide>
         </Swiper>
       </div>
