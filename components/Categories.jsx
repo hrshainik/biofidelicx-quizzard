@@ -86,7 +86,7 @@ const Categories = ({ categories }) => {
         >
           {categories.map(({ attributes: category, id }) => (
             <SwiperSlide key={id}>
-              <CategoryCard {...category} />
+              <CategoryCard {...category} id={id} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Header = ({ imageUrl }) => {
+const Header = ({ imageUrl, title }) => {
   const bgImage = {
     background: `linear-gradient(
       rgba(0, 0, 0, .75), 
@@ -28,7 +28,7 @@ const Header = ({ imageUrl }) => {
         </div>
         <div className="flex flex-col items-center justify-center">
           <h1 className="w-11/12 text-center font-h text-3xl font-bold text-white-500 sm:text-4xl md:text-5xl pt-16 md:pt-24 lg:pt-32 pb-24 md:pb-32 lg:pb-40">
-            Molecular Biology
+            {title}
           </h1>
         </div>
       </main>

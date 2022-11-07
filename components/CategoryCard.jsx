@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-const CategoryCard = ({ title, slug, description, quizzes }) => {
+const CategoryCard = ({ title, slug, description, quizzes, id }) => {
   return (
-    <Link href={`/category/${slug}`}>
+    <Link href={`/category/${id}`}>
       <a className="m-5 relative flex items-end h-48 transition bg-white-500 border-4 border-gray-900 group hover:bg-aquamarine-500">
         <span className="absolute inset-0 -translate-x-2 ring-gray-900 -translate-y-2 bg-white-500 ring-4 border-gray-900 -z-10"></span>
         <span className="absolute inset-0 -translate-x-4 ring-gray-900 -translate-y-4 bg-white-500 ring-4 border-gray-900 -z-20"></span>

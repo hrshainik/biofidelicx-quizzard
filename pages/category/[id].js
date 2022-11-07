@@ -1,11 +1,19 @@
 import Head from "next/head";
 import { Header, QuizCard } from "../../components";
+import { getCategories, getCategory } from "../../services";
 
-const Category = () => {
+const Category = ({ categoryInfo }) => {
+  console.log(categoryInfo);
+  const {
+    data: { attributes: category },
+  } = categoryInfo;
+
+  console.log(category);
+
   return (
     <>
       <Head>
-        <title>Category Name</title>
+        <title>{category.title}</title>
         <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=7" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
@@ -23,17 +31,15 @@ const Category = () => {
         <meta property="og:description" content="dynamic text" />
         <meta property="og:image" content="dynamic text" />
       </Head>
-      <Header />
+      <Header title={category.title} />
       <div className="mx-auto mb-8 px-2">
         <div className="page-details">
           <div className="page-shadow"></div>
           <div className="z-50 container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
             <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
-              <QuizCard />
-              <QuizCard />
-              <QuizCard />
-              <QuizCard />
-              <QuizCard />
+              {category.quizzes.data.map(({ attributes: quiz, id }) => (
+                <QuizCard key={id} {...quiz} />
+              ))}
             </div>
             <div className="col-span-1 lg:col-span-4">
               <div className="relative lg:sticky lg:top-20"></div>
@@ -46,3 +52,23 @@ const Category = () => {
 };
 
 export default Category;
+
+export async function getStaticProps({ params }) {
+  const categoryInfo = await getCategory(params.id);
+  return {
+    props: {
+      categoryInfo,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const { data: categories } = await getCategories();
+  const paths = categories.map((category) => ({
+    params: { id: `${category.id}` },
+  }));
+  return {
+    paths,
+    fallback: true,
+  };
+}
