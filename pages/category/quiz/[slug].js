@@ -5,7 +5,7 @@ const Quiz = () => {
   return (
     <>
       <Head>
-        <title>Category</title>
+        <title>Quiz Name</title>
         <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=7" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />

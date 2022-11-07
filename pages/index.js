@@ -1,7 +1,14 @@
 import Head from "next/head";
 import { Categories, Header, QuizCard } from "../components";
+import { getCategories, getQuizzes } from "../services";
 
-export default function Home() {
+export default function Home({ categoriesInfo, quizzesInfo }) {
+  console.log(categoriesInfo);
+  console.log(quizzesInfo);
+
+  const { data: categories } = categoriesInfo;
+  const { data: quizzes } = quizzesInfo;
+
   return (
     <>
       <Head>
@@ -19,16 +26,12 @@ export default function Home() {
         <meta name="author" content="Habibur Rahman" />
       </Head>
       <Header />
-      <Categories />
+      <Categories categories={categories} />
       <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
         <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
-          <QuizCard />
-          <QuizCard />
-          <QuizCard />
-          <QuizCard />
-          <QuizCard />
-          <QuizCard />
-          <QuizCard />
+          {quizzes.map((quiz, i) => (
+            <QuizCard key={i} />
+          ))}
         </div>
         <div className="col-span-1 lg:col-span-4">
           <div className="relative lg:sticky lg:top-20"></div>
@@ -36,4 +39,12 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const categoriesInfo = await getCategories();
+  const quizzesInfo = await getQuizzes();
+  return {
+    props: { categoriesInfo, quizzesInfo },
+  };
 }

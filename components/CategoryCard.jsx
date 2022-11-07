@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const CategoryCard = ({ title, slug }) => {
+const CategoryCard = ({ title, slug, description, quizzes }) => {
   return (
     <Link href={`/category/${slug}`}>
       <a className="m-5 relative flex items-end h-48 transition bg-white-500 border-4 border-gray-900 group hover:bg-aquamarine-500">
@@ -9,16 +9,15 @@ const CategoryCard = ({ title, slug }) => {
 
         <div className="p-8 lg:group-hover:opacity-0 lg:group-hover:absolute">
           <p className="text-lg font-bold">{title}</p>
-          <p className="mt-1 font-mono text-xs">7 Quizzes</p>
+          <p className="mt-1 font-mono text-xs">
+            {quizzes.data.length} Quizzes
+          </p>
         </div>
 
         <div className="absolute p-8 opacity-0 lg:group-hover:relative lg:group-hover:opacity-100">
           <p className="text-lg font-bold">{title}</p>
 
-          <p className="mt-1 text-xs">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo
-            officiis impedit deleniti odio
-          </p>
+          <p className="mt-1 text-xs">{description}</p>
         </div>
       </a>
     </Link>
