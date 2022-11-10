@@ -1,6 +1,7 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CategoryCard, Header } from "../../components";
+import { getCategories } from "../../services";
 
 export async function getStaticProps() {
   const categoriesInfo = await getCategories();
@@ -10,8 +11,14 @@ export async function getStaticProps() {
 }
 
 const Category = ({ categoriesInfo }) => {
-  const { data: categories } = categoriesInfo;
-  console.log(categories);
+  // const { data: categories } = categoriesInfo;
+  // console.log(categories);
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    setCategories(categoriesInfo.data);
+  }, [categoriesInfo.data]);
 
   return (
     <>
