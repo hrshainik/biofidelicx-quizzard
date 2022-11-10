@@ -8,6 +8,33 @@ import {
 } from "../../../../components";
 import { getCategories, getQuiz, getQuizzes } from "../../../../services";
 
+export async function getStaticProps({ params }) {
+  const quizInfo = await getQuiz(params.quizId);
+
+  return {
+    props: {
+      quizInfo,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const { data: quizzes } = await getQuizzes();
+  const { data: categories } = await getCategories();
+
+  return {
+    paths: categories.map((category) => {
+      return {
+        params: {
+          categoryId: `${category.id}`,
+          quizId: `${category.attributes.quizzes.data[0].id}`,
+        },
+      };
+    }),
+    fallback: true,
+  };
+}
+
 const getQuestion = (questions, index) => {
   return questions[index];
 };
@@ -172,30 +199,3 @@ const Quiz = ({ quizInfo }) => {
 };
 
 export default Quiz;
-
-export async function getStaticProps({ params }) {
-  const quizInfo = await getQuiz(params.quizId);
-
-  return {
-    props: {
-      quizInfo,
-    },
-  };
-}
-
-export async function getStaticPaths() {
-  const { data: quizzes } = await getQuizzes();
-  const { data: categories } = await getCategories();
-
-  return {
-    paths: categories.map((category) => {
-      return {
-        params: {
-          categoryId: `${category.id}`,
-          quizId: `${category.attributes.quizzes.data[0].id}`,
-        },
-      };
-    }),
-    fallback: true,
-  };
-}

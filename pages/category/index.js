@@ -1,7 +1,13 @@
 import Head from "next/head";
 import React from "react";
 import { CategoryCard, Header } from "../../components";
-import { getCategories } from "../../services";
+
+export async function getStaticProps() {
+  const categoriesInfo = await getCategories();
+  return {
+    props: { categoriesInfo },
+  };
+}
 
 const Category = ({ categoriesInfo }) => {
   const { data: categories } = categoriesInfo;
@@ -33,10 +39,3 @@ const Category = ({ categoriesInfo }) => {
 };
 
 export default Category;
-
-export async function getStaticProps() {
-  const categoriesInfo = await getCategories();
-  return {
-    props: { categoriesInfo },
-  };
-}

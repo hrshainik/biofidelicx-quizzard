@@ -3,6 +3,14 @@ import { useEffect, useState } from "react";
 import { Categories, Header, QuizCard } from "../components";
 import { getCategories, getQuizzes } from "../services";
 
+export async function getStaticProps() {
+  const categoriesInfo = await getCategories();
+  const quizzesInfo = await getQuizzes();
+  return {
+    props: { categoriesInfo, quizzesInfo },
+  };
+}
+
 export default function Home({ categoriesInfo, quizzesInfo }) {
   const [categories, setCategories] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
@@ -47,12 +55,4 @@ export default function Home({ categoriesInfo, quizzesInfo }) {
       </div>
     </>
   );
-}
-
-export async function getStaticProps() {
-  const categoriesInfo = await getCategories();
-  const quizzesInfo = await getQuizzes();
-  return {
-    props: { categoriesInfo, quizzesInfo },
-  };
 }

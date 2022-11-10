@@ -2,6 +2,26 @@ import Head from "next/head";
 import { Header, QuizCard } from "../../../components";
 import { getCategories, getCategory } from "../../../services";
 
+export async function getStaticProps({ params }) {
+  const categoryInfo = await getCategory(params.categoryId);
+  return {
+    props: {
+      categoryInfo,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const { data: categories } = await getCategories();
+  const paths = categories.map((category) => ({
+    params: { categoryId: `${category.id}` },
+  }));
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
 const Category = ({ categoryInfo }) => {
   console.log(categoryInfo);
   const {
@@ -57,23 +77,3 @@ const Category = ({ categoryInfo }) => {
 };
 
 export default Category;
-
-export async function getStaticProps({ params }) {
-  const categoryInfo = await getCategory(params.categoryId);
-  return {
-    props: {
-      categoryInfo,
-    },
-  };
-}
-
-export async function getStaticPaths() {
-  const { data: categories } = await getCategories();
-  const paths = categories.map((category) => ({
-    params: { categoryId: `${category.id}` },
-  }));
-  return {
-    paths,
-    fallback: true,
-  };
-}
