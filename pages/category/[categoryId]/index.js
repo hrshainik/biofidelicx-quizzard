@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import { Header, QuizCard } from "../../../components";
 import { getCategories, getCategory } from "../../../services";
 
@@ -23,12 +24,18 @@ export async function getStaticPaths() {
 }
 
 const Category = ({ categoryInfo }) => {
-  console.log(categoryInfo);
-  const {
-    data: { attributes: category, id: categoryId },
-  } = categoryInfo;
+  // console.log(categoryInfo);
+  // const {
+  //   data: { attributes: category, id: categoryId },
+  // } = categoryInfo;
 
-  console.log(category);
+  const [category, setCategory] = useState([]);
+  const [categoryId, setCategoryId] = useState();
+
+  useEffect(() => {
+    setCategory(categoryInfo.data.attributes);
+    setCategoryId(categoryInfo.data.id);
+  }, [categoryInfo?.data?.attributes, categoryInfo?.data?.id]);
 
   return (
     <>
@@ -57,14 +64,16 @@ const Category = ({ categoryInfo }) => {
           <div className="page-shadow"></div>
           <div className="z-50 container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
             <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
-              {category.quizzes.data.map(({ attributes: quiz, id: quizId }) => (
-                <QuizCard
-                  key={quizId}
-                  {...quiz}
-                  quizId={quizId}
-                  categoryId={categoryId}
-                />
-              ))}
+              {category?.quizzes?.data.map(
+                ({ attributes: quiz, id: quizId }) => (
+                  <QuizCard
+                    key={quizId}
+                    {...quiz}
+                    quizId={quizId}
+                    categoryId={categoryId}
+                  />
+                )
+              )}
             </div>
             <div className="col-span-1 lg:col-span-4">
               <div className="relative lg:sticky lg:top-20"></div>

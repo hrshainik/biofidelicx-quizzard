@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Checkbox,
   Header,
@@ -36,29 +36,33 @@ export async function getStaticPaths() {
 }
 
 const getQuestion = (questions, index) => {
-  return questions[index];
+  if (questions) {
+    return questions[index];
+  }
 };
 
 const Quiz = ({ quizInfo }) => {
-  const {
-    data: { attributes: quiz },
-  } = quizInfo;
-
+  const [quiz, setQuiz] = useState();
+  const [question, setQuestion] = useState();
   const [index, setIndex] = useState(0);
   const [selectedRadioBtn, setSelectedRadioBtn] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(new Set());
   const [correctAnswerArr, setCorrectAnswerArr] = useState([]);
   const [collectSelectedAns, setCollectSelectedAns] = useState([]);
   const [finished, setFinished] = useState(false);
-  const question = getQuestion(quiz.questions.data, index);
 
-  const hasNext = () => {
-    return index < quiz.questions.data.length - 1;
+  useEffect(() => {
+    setQuiz(quizInfo.data.attributes);
+    setQuestion(() => getQuestion(quiz?.questions?.data, index));
+  }, [quizInfo, quiz?.questions?.data, index]);
+
+  const hasPrev = () => {
+    return index > 0;
   };
 
-  const isCorrectlyAnswered = () => {
-    return correctAnswers.has(index);
-  };
+  const hasNext = useCallback(() => {
+    return index < quiz?.questions.data.length - 1;
+  }, [index, quiz]);
 
   const nextQuestion = () => {
     setTimeout(() => {
@@ -70,8 +74,8 @@ const Quiz = ({ quizInfo }) => {
     }, 600);
   };
 
-  const hasPrev = () => {
-    return index > 0;
+  const isCorrectlyAnswered = () => {
+    return correctAnswers.has(index);
   };
 
   const prevQuestion = () => {
@@ -110,7 +114,7 @@ const Quiz = ({ quizInfo }) => {
   return (
     <>
       <Head>
-        <title>{quiz.title}</title>
+        <title>{quiz?.title}</title>
         <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=7" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
@@ -128,16 +132,16 @@ const Quiz = ({ quizInfo }) => {
         <meta property="og:description" content="dynamic text" />
         <meta property="og:image" content="dynamic text" />
       </Head>
-      <Header title={quiz.title} />
+      <Header title={quiz?.title} />
       <div className="mx-auto mb-8 px-2">
         <div className="page-details">
           <div className="page-shadow"></div>
           <div className="z-50 bg-white-500">
             {!finished ? (
               <>
-                <Question questionText={question.attributes.questionText} />
+                <Question questionText={question?.attributes.questionText} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                  {question.attributes.answerOptions.map((option) => (
+                  {question?.attributes.answerOptions.map((option) => (
                     <Checkbox
                       key={option.id}
                       value={option.id}
