@@ -5,6 +5,7 @@ import { getCategories } from "../../services";
 
 const Category = ({ categoriesInfo }) => {
   const { data: categories } = categoriesInfo;
+  console.log(categories);
 
   return (
     <>
@@ -18,7 +19,7 @@ const Category = ({ categoriesInfo }) => {
           <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
             <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
               {categories.map(({ attributes: category, id }) => (
-                <CategoryCard key={id} {...category} />
+                <CategoryCard key={id} {...category} id={id} />
               ))}
             </div>
             <div className="col-span-1 lg:col-span-4">

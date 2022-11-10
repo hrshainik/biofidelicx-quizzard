@@ -1,13 +1,16 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import { Categories, Header, QuizCard } from "../components";
 import { getCategories, getQuizzes } from "../services";
 
 export default function Home({ categoriesInfo, quizzesInfo }) {
-  console.log(categoriesInfo);
-  console.log(quizzesInfo);
+  const [categories, setCategories] = useState([]);
+  const [quizzes, setQuizzes] = useState([]);
 
-  const { data: categories } = categoriesInfo;
-  const { data: quizzes } = quizzesInfo;
+  useEffect(() => {
+    setCategories(categoriesInfo.data);
+    setQuizzes(quizzesInfo.data);
+  }, [categoriesInfo.data, quizzesInfo.data]);
 
   return (
     <>
@@ -29,8 +32,13 @@ export default function Home({ categoriesInfo, quizzesInfo }) {
       <Categories categories={categories} />
       <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
         <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
-          {quizzes.map((quiz, i) => (
-            <QuizCard key={i} />
+          {quizzes.map(({ attributes: quiz, id: quizId }) => (
+            <QuizCard
+              key={quizId}
+              {...quiz}
+              quizId={quizId}
+              categoryId={quiz.category.data.id}
+            />
           ))}
         </div>
         <div className="col-span-1 lg:col-span-4">

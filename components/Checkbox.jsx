@@ -12,23 +12,24 @@ const Checkbox = ({ value, name, handleRadioClick, isRadioSelected, text }) => {
       />
       <label
         htmlFor={`${value}`}
-        className={`bg-midnight-500 text-white-500 text-base p-3 cursor-pointer flex items-center gap-5 ${
+        className={`bg-midnight-500 text-white-500 text-base p-3 cursor-pointer flex justify-between items-center gap-4 ${
           isRadioSelected(`${value}`) ? "reverse" : ""
         }`}
+        style={{ wordWrap: "break-word" }}
       >
         <svg
           width="50"
           height="50"
           viewBox="0 0 50 50"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-6"
+          style={{ flex: "0 0 1.5rem" }}
         >
           <rect
             x="1.26"
             y="1.26"
             width="47.48"
             height="47.48"
-            strokeWidth="2.52"
+            strokeWidth="3"
             className="box"
           />
           <path
@@ -37,7 +38,7 @@ const Checkbox = ({ value, name, handleRadioClick, isRadioSelected, text }) => {
             className="check"
           />
         </svg>
-        {text}
+        <span style={{ flex: "1 1 auto", wordWrap: "break-word" }}>{text}</span>
       </label>
     </div>
   );

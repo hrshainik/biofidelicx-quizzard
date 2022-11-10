@@ -4,12 +4,12 @@ const QUIZ_URLS = {
 };
 
 export const getQuizzes = async () => {
-  const res = await fetch(`${QUIZ_URLS.quiz}`);
+  const res = await fetch(`${QUIZ_URLS.quiz}?populate=deep,2`);
   return await res.json();
 };
 
 export const getQuiz = async (id) => {
-  const res = await fetch(`${QUIZ_URLS.quiz}/${id}`);
+  const res = await fetch(`${QUIZ_URLS.quiz}/${id}?populate=deep,3`);
   return await res.json();
 };
 
@@ -19,6 +19,6 @@ export const getCategories = async () => {
 };
 
 export const getCategory = async (id) => {
-  const res = await fetch(`${QUIZ_URLS.category}/${id}?populate[0]=quizzes`);
+  const res = await fetch(`${QUIZ_URLS.category}/${id}?populate=deep,3`);
   return await res.json();
 };

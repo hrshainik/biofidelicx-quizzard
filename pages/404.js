@@ -6,7 +6,10 @@ const Custom404 = () => {
       <Head>
         <title>Page Not Found - biofidelicX academy</title>
       </Head>
-      <h1>Page Not Found</h1>
+      <div style={{ marginTop: "52px" }}>
+        <h1 className="text-center">Page Not Found</h1>
+        <button className="">Go Back</button>
+      </div>
     </>
   );
 };
