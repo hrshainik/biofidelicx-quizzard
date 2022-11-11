@@ -1,14 +1,12 @@
-// if (process.env.NODE_ENV === "development") {
-//   const QUIZ_URLS = {
-//     quiz: `http://localhost:1337/api/quizzes`,
-//     category: `http://localhost:1337/api/quiz-categories`,
-//   };
-// }
-
 const QUIZ_URLS = {
-  quiz: `${process.env.NEXT_PUBLIC_API_URL}/api/quizzes`,
-  category: `${process.env.NEXT_PUBLIC_API_URL}/api/quiz-categories`,
+  quiz: `https://biofidelicx-quiz-cms.herokuapp.com/api/quizzes`,
+  category: `https://biofidelicx-quiz-cms.herokuapp.com/api/quiz-categories`,
 };
+
+// const QUIZ_URLS = {
+//   quiz: `${process.env.NEXT_PUBLIC_API_URL}/api/quizzes`,
+//   category: `${process.env.NEXT_PUBLIC_API_URL}/api/quiz-categories`,
+// };
 
 export const getQuizzes = async () => {
   const res = await fetch(`${QUIZ_URLS.quiz}?populate=deep,2`);

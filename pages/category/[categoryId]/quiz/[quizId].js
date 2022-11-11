@@ -43,7 +43,8 @@ const getQuestion = (questions, index) => {
 
 const Quiz = ({ quizInfo }) => {
   const [quiz, setQuiz] = useState();
-  const [question, setQuestion] = useState();
+  const [questions, setQuestions] = useState();
+  // const [question, setQuestion] = useState();
   const [index, setIndex] = useState(0);
   const [selectedRadioBtn, setSelectedRadioBtn] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(new Set());
@@ -53,15 +54,17 @@ const Quiz = ({ quizInfo }) => {
 
   useEffect(() => {
     setQuiz(quizInfo.data.attributes);
-    setQuestion(() => getQuestion(quiz?.questions?.data, index));
+    setQuestions(quiz?.questions?.data);
   }, [quizInfo, quiz?.questions?.data, index]);
+
+  const question = getQuestion(questions, index);
 
   const hasPrev = () => {
     return index > 0;
   };
 
   const hasNext = useCallback(() => {
-    return index < quiz?.questions.data.length - 1;
+    return index < quiz?.questions?.data.length - 1;
   }, [index, quiz]);
 
   const nextQuestion = () => {
@@ -110,6 +113,10 @@ const Quiz = ({ quizInfo }) => {
   const handleCorrectAns = (option) => {
     setCorrectAnswerArr([...correctAnswerArr, option.id]);
   };
+
+  console.log(quiz);
+  console.log(questions);
+  console.log(question);
 
   return (
     <>
