@@ -1,8 +1,8 @@
 const Question = ({ questionText }) => {
   return (
-    <h3 className="p-6 text-2xl font-bold bg-white-500 text-center border border-aquamarine-500">
-      {questionText}
-    </h3>
+    <div className="p-6 bg-white-500 border border-aquamarine-500">
+      <h3 className="text-2xl font-bold text-center">{questionText}</h3>
+    </div>
   );
 };
 
