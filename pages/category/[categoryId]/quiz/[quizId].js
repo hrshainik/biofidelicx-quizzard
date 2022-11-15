@@ -35,27 +35,31 @@ export async function getStaticPaths() {
   };
 }
 
-const getQuestion = (questions, index) => {
-  if (questions) {
-    return questions[index];
-  }
-};
-
 const Quiz = ({ quizInfo }) => {
   const [quiz, setQuiz] = useState();
   const [questions, setQuestions] = useState();
-  // const [question, setQuestion] = useState();
   const [index, setIndex] = useState(0);
   const [selectedRadioBtn, setSelectedRadioBtn] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(new Set());
   const [correctAnswerArr, setCorrectAnswerArr] = useState([]);
   const [collectSelectedAns, setCollectSelectedAns] = useState([]);
   const [finished, setFinished] = useState(false);
+  const [opacity, setOpacity] = useState("opacity-100");
+
+  const getQuestion = (questions, index) => {
+    if (questions) {
+      return questions[index];
+    }
+  };
 
   useEffect(() => {
     setQuiz(quizInfo.data.attributes);
     setQuestions(quiz?.questions?.data);
-  }, [quizInfo, quiz?.questions?.data, index]);
+  }, [quizInfo, quiz?.questions?.data]);
+
+  useEffect(() => {
+    setOpacity("opacity-100");
+  }, [index]);
 
   const question = getQuestion(questions, index);
 
@@ -69,12 +73,16 @@ const Quiz = ({ quizInfo }) => {
 
   const nextQuestion = () => {
     setTimeout(() => {
+      setOpacity("opacity-0");
+    }, 500);
+
+    setTimeout(() => {
       if (!hasNext()) {
         finishQuiz();
       } else {
         setIndex(index + 1);
       }
-    }, 600);
+    }, 800);
   };
 
   const isCorrectlyAnswered = () => {
@@ -145,9 +153,9 @@ const Quiz = ({ quizInfo }) => {
           <div className="page-shadow"></div>
           <div className="z-50 bg-white-500">
             {!finished ? (
-              <>
+              <div className={`${opacity} transition-opacity duration-300`}>
                 <Question questionText={question?.attributes.questionText} />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 mt-8`}>
                   {question?.attributes.answerOptions.map((option) => (
                     <Checkbox
                       key={option.id}
@@ -159,7 +167,7 @@ const Quiz = ({ quizInfo }) => {
                     />
                   ))}
                 </div>
-                <div className="flex gap-x-4 mt-10 justify-center">
+                {/* <div className="flex gap-x-4 mt-10 justify-center">
                   {hasPrev() ? (
                     <p className="px-2 button rounded border border-green-500">
                       <button onClick={prevQuestion}>Previous</button>
@@ -171,8 +179,26 @@ const Quiz = ({ quizInfo }) => {
                       <button onClick={nextQuestion}>Next</button>
                     </p>
                   ) : null}
+                </div> */}
+                <div className="flex justify-between mb-1">
+                  <span className="text-base font-medium text-blue-700 dark:text-white">
+                    Progress
+                  </span>
+                  <span className="text-sm font-medium text-blue-700 dark:text-white">
+                    {`${((index * 100) / quiz?.questions.data.length).toFixed(
+                      0
+                    )}%`}
+                  </span>
                 </div>
-              </>
+                <div className="w-full bg-gray-200 h-2.5 dark:bg-gray-700 transition-all">
+                  <div
+                    className="bg-midnight-600 h-2.5"
+                    style={{
+                      width: `${(index * 100) / quiz?.questions.data.length}%`,
+                    }}
+                  ></div>
+                </div>
+              </div>
             ) : (
               <>
                 <h1 className="text-center text-3xl">

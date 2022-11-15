@@ -26,7 +26,7 @@ const ResultCheckbox = ({
         htmlFor={`${value}`}
         className={`${
           correctAns ? "bg-eastern-blue-500" : "bg-midnight-500"
-        } text-white-500 text-base p-3 cursor-pointer flex items-center gap-5 ${
+        } text-white-500 text-base p-3 cursor-auto flex items-center gap-5 ${
           wrongAns.includes(`${value}`) ? "bg-rose-500" : "bg-midnight-500"
         } ${correctAns ? "reverse" : ""}`}
       >
