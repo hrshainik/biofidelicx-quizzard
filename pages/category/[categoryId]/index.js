@@ -24,11 +24,6 @@ export async function getStaticPaths() {
 }
 
 const Category = ({ categoryInfo }) => {
-  // console.log(categoryInfo);
-  // const {
-  //   data: { attributes: category, id: categoryId },
-  // } = categoryInfo;
-
   const [category, setCategory] = useState([]);
   const [categoryId, setCategoryId] = useState();
 

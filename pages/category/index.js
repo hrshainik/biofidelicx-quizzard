@@ -11,9 +11,6 @@ export async function getStaticProps() {
 }
 
 const Category = ({ categoriesInfo }) => {
-  // const { data: categories } = categoriesInfo;
-  // console.log(categories);
-
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {

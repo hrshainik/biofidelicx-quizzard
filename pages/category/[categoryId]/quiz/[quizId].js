@@ -5,6 +5,7 @@ import {
   Header,
   Question,
   ResultCheckbox,
+  Timer,
 } from "../../../../components";
 import { getCategories, getQuiz, getQuizzes } from "../../../../services";
 
@@ -45,6 +46,7 @@ const Quiz = ({ quizInfo }) => {
   const [collectSelectedAns, setCollectSelectedAns] = useState([]);
   const [finished, setFinished] = useState(false);
   const [opacity, setOpacity] = useState("opacity-100");
+  const [quizTime, setQuizTime] = useState(10000);
 
   const getQuestion = (questions, index) => {
     if (questions) {
@@ -95,9 +97,11 @@ const Quiz = ({ quizInfo }) => {
     }
   };
 
-  const finishQuiz = () => {
+  const finishQuiz = useCallback(() => {
+    console.log("called finishQuiz function");
+    setQuizTime(0);
     setFinished(true);
-  };
+  }, []);
 
   const checkOption = (e, option) => {
     setCollectSelectedAns((ans) => ans.concat(e.target.value));
@@ -121,10 +125,6 @@ const Quiz = ({ quizInfo }) => {
   const handleCorrectAns = (option) => {
     setCorrectAnswerArr([...correctAnswerArr, option.id]);
   };
-
-  console.log(quiz);
-  console.log(questions);
-  console.log(question);
 
   return (
     <>
@@ -152,6 +152,7 @@ const Quiz = ({ quizInfo }) => {
         <div className="page-details">
           <div className="page-shadow"></div>
           <div className="z-50 bg-white-500">
+            <Timer quizTime={quizTime} finishQuiz={finishQuiz} />
             {!finished ? (
               <div className={`${opacity} transition-opacity duration-300`}>
                 <Question questionText={question?.attributes.questionText} />
