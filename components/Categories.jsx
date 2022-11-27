@@ -5,36 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CategoryCard from "./CategoryCard";
 
 const Categories = ({ categories }) => {
-  // const [categories, setCategories] = useState([]);
-
-  // useEffect(() => {
-  //   setCategories([
-  //     {
-  //       title: "Biochemistry",
-  //       slug: "biochemistry",
-  //     },
-  //     {
-  //       title: "Genetics",
-  //       slug: "genetics",
-  //     },
-  //     {
-  //       title: "Oncology",
-  //       slug: "oncology",
-  //     },
-  //     {
-  //       title: "Biology",
-  //       slug: "biology",
-  //     },
-  //     {
-  //       title: "Chemistry",
-  //       slug: "chemistry",
-  //     },
-  //     {
-  //       title: "Biotechnology",
-  //       slug: "biotechnology",
-  //     },
-  //   ]);
-  // }, []);
   return (
     <div className="w-full">
       <div className="container mx-auto mb-8" style={{ marginTop: "-6rem" }}>

@@ -1,10 +1,21 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CategoryCard, Header } from "../../components";
 import { getCategories } from "../../services";
 
+export async function getStaticProps() {
+  const categoriesInfo = await getCategories();
+  return {
+    props: { categoriesInfo },
+  };
+}
+
 const Category = ({ categoriesInfo }) => {
-  const { data: categories } = categoriesInfo;
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    setCategories(categoriesInfo.data);
+  }, [categoriesInfo.data]);
 
   return (
     <>
@@ -18,7 +29,7 @@ const Category = ({ categoriesInfo }) => {
           <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
             <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
               {categories.map(({ attributes: category, id }) => (
-                <CategoryCard key={id} {...category} />
+                <CategoryCard key={id} {...category} id={id} />
               ))}
             </div>
             <div className="col-span-1 lg:col-span-4">
@@ -32,10 +43,3 @@ const Category = ({ categoriesInfo }) => {
 };
 
 export default Category;
-
-export async function getStaticProps() {
-  const categoriesInfo = await getCategories();
-  return {
-    props: { categoriesInfo },
-  };
-}
