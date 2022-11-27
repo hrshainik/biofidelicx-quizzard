@@ -1,6 +1,6 @@
 const QUIZ_URLS = {
-  quiz: "http://localhost:1337/api/quizzes",
-  category: "http://localhost:1337/api/quiz-categories",
+  quiz: `${process.env.NEXT_PUBLIC_API_URL}api/quizzes`,
+  category: `${process.env.NEXT_PUBLIC_API_URL}api/quiz-categories`,
 };
 
 export const getQuizzes = async () => {
