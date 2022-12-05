@@ -45,7 +45,7 @@ const Quiz = ({ quizInfo }) => {
   const [collectSelectedAns, setCollectSelectedAns] = useState([]);
   const [finished, setFinished] = useState(false);
   const [opacity, setOpacity] = useState("opacity-100");
-  const [quizTime, setQuizTime] = useState(10000);
+  const [quizTime, setQuizTime] = useState();
 
   const getQuestion = (questions, index) => {
     if (questions) {
@@ -55,8 +55,9 @@ const Quiz = ({ quizInfo }) => {
 
   useEffect(() => {
     setQuiz(quizInfo?.edges[0]?.node);
-    setQuestions(quiz?.questions);
-  }, [quizInfo, quiz?.questions]);
+    setQuestions(quizInfo?.edges[0]?.node?.questions);
+    setQuizTime(quizInfo?.edges[0]?.node?.time * 60000);
+  }, [quizInfo]);
 
   useEffect(() => {
     setOpacity("opacity-100");
@@ -97,7 +98,6 @@ const Quiz = ({ quizInfo }) => {
   };
 
   const finishQuiz = useCallback(() => {
-    console.log("called finishQuiz function");
     setQuizTime(0);
     setFinished(true);
   }, []);
@@ -125,8 +125,6 @@ const Quiz = ({ quizInfo }) => {
     setCorrectAnswerArr([...correctAnswerArr, option.id]);
   };
 
-  // return null;
-
   return (
     <>
       <Head>
@@ -153,7 +151,9 @@ const Quiz = ({ quizInfo }) => {
         <div className="page-details">
           <div className="page-shadow"></div>
           <div className="z-50 bg-white-500">
-            <Timer quizTime={quizTime} finishQuiz={finishQuiz} />
+            {quizTime ? (
+              <Timer quizTime={quizTime} finishQuiz={finishQuiz} />
+            ) : null}
             {!finished ? (
               <div className={`${opacity} transition-opacity duration-300`}>
                 <Question questionText={question?.questionText} />

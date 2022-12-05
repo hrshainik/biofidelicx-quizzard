@@ -14,7 +14,6 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 };
 
 const Timer = ({ quizTime, finishQuiz }) => {
-  console.log("timer component rendering...");
   return (
     <>
       <Countdown
