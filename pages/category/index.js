@@ -14,8 +14,8 @@ const Category = ({ categoriesInfo }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    setCategories(categoriesInfo.data);
-  }, [categoriesInfo.data]);
+    setCategories(categoriesInfo.edges);
+  }, [categoriesInfo]);
 
   return (
     <>
@@ -28,8 +28,8 @@ const Category = ({ categoriesInfo }) => {
         <div className="z-50 bg-white-500">
           <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
             <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
-              {categories.map(({ attributes: category, id }) => (
-                <CategoryCard key={id} {...category} id={id} />
+              {categories.map(({ node: category }) => (
+                <CategoryCard key={category.id} {...category} />
               ))}
             </div>
             <div className="col-span-1 lg:col-span-4">

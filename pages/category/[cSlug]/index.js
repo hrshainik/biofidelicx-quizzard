@@ -4,7 +4,7 @@ import { Header, QuizCard } from "../../../components";
 import { getCategories, getCategory } from "../../../services";
 
 export async function getStaticProps({ params }) {
-  const categoryInfo = await getCategory(params.categoryId);
+  const categoryInfo = await getCategory(params.cSlug);
   return {
     props: {
       categoryInfo,
@@ -13,9 +13,9 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const { data: categories } = await getCategories();
-  const paths = categories.map((category) => ({
-    params: { categoryId: `${category.id}` },
+  const { edges: categories } = await getCategories();
+  const paths = categories.map(({ node: category }) => ({
+    params: { cSlug: `${category.slug}` },
   }));
   return {
     paths,
@@ -25,12 +25,10 @@ export async function getStaticPaths() {
 
 const Category = ({ categoryInfo }) => {
   const [category, setCategory] = useState([]);
-  const [categoryId, setCategoryId] = useState();
 
   useEffect(() => {
-    setCategory(categoryInfo.data.attributes);
-    setCategoryId(categoryInfo.data.id);
-  }, [categoryInfo?.data?.attributes, categoryInfo?.data?.id]);
+    setCategory(categoryInfo.edges[0].node);
+  }, [categoryInfo]);
 
   return (
     <>
@@ -59,16 +57,9 @@ const Category = ({ categoryInfo }) => {
           <div className="page-shadow"></div>
           <div className="z-50 container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
             <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
-              {category?.quizzes?.data.map(
-                ({ attributes: quiz, id: quizId }) => (
-                  <QuizCard
-                    key={quizId}
-                    {...quiz}
-                    quizId={quizId}
-                    categoryId={categoryId}
-                  />
-                )
-              )}
+              {category?.quizzes?.map((quiz) => (
+                <QuizCard key={quiz.id} {...quiz} category={category} />
+              ))}
             </div>
             <div className="col-span-1 lg:col-span-4">
               <div className="relative lg:sticky lg:top-20"></div>

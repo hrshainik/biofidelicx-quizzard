@@ -7,10 +7,10 @@ import {
   ResultCheckbox,
   Timer,
 } from "../../../../components";
-import { getCategories, getQuiz, getQuizzes } from "../../../../services";
+import { getCategories, getQuiz } from "../../../../services";
 
 export async function getStaticProps({ params }) {
-  const quizInfo = await getQuiz(params.quizId);
+  const quizInfo = await getQuiz(params.qSlug);
 
   return {
     props: {
@@ -20,15 +20,14 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const { data: quizzes } = await getQuizzes();
-  const { data: categories } = await getCategories();
+  const { edges: categories } = await getCategories();
 
   return {
-    paths: categories.map((category) => {
+    paths: categories.map(({ node: category }) => {
       return {
         params: {
-          categoryId: `${category.id}`,
-          quizId: `${category.attributes.quizzes.data[0].id}`,
+          cSlug: `${category.slug}`,
+          qSlug: `${category.quizzes.slug}`,
         },
       };
     }),
@@ -55,9 +54,9 @@ const Quiz = ({ quizInfo }) => {
   };
 
   useEffect(() => {
-    setQuiz(quizInfo.data.attributes);
-    setQuestions(quiz?.questions?.data);
-  }, [quizInfo, quiz?.questions?.data]);
+    setQuiz(quizInfo?.edges[0]?.node);
+    setQuestions(quiz?.questions);
+  }, [quizInfo, quiz?.questions]);
 
   useEffect(() => {
     setOpacity("opacity-100");
@@ -70,7 +69,7 @@ const Quiz = ({ quizInfo }) => {
   };
 
   const hasNext = useCallback(() => {
-    return index < quiz?.questions?.data.length - 1;
+    return index < quiz.questions.length - 1;
   }, [index, quiz]);
 
   const nextQuestion = () => {
@@ -126,6 +125,8 @@ const Quiz = ({ quizInfo }) => {
     setCorrectAnswerArr([...correctAnswerArr, option.id]);
   };
 
+  // return null;
+
   return (
     <>
       <Head>
@@ -155,9 +156,9 @@ const Quiz = ({ quizInfo }) => {
             <Timer quizTime={quizTime} finishQuiz={finishQuiz} />
             {!finished ? (
               <div className={`${opacity} transition-opacity duration-300`}>
-                <Question questionText={question?.attributes.questionText} />
+                <Question questionText={question?.questionText} />
                 <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 mt-8`}>
-                  {question?.attributes.answerOptions.map((option) => (
+                  {question?.answerOptions.map((option) => (
                     <Checkbox
                       key={option.id}
                       value={option.id}
@@ -186,16 +187,14 @@ const Quiz = ({ quizInfo }) => {
                     Progress
                   </span>
                   <span className="text-sm font-medium text-blue-700 dark:text-white">
-                    {`${((index * 100) / quiz?.questions.data.length).toFixed(
-                      0
-                    )}%`}
+                    {`${((index * 100) / quiz?.questions.length).toFixed(0)}%`}
                   </span>
                 </div>
                 <div className="w-full bg-gray-200 h-2.5 dark:bg-gray-700 transition-all">
                   <div
                     className="bg-midnight-600 h-2.5"
                     style={{
-                      width: `${(index * 100) / quiz?.questions.data.length}%`,
+                      width: `${(index * 100) / quiz?.questions.length}%`,
                     }}
                   ></div>
                 </div>
@@ -203,11 +202,11 @@ const Quiz = ({ quizInfo }) => {
             ) : (
               <>
                 <h1 className="text-center text-3xl">
-                  {correctAnswers.size * 10} / {quiz.questions.data.length * 10}
+                  {correctAnswers.size * 10} / {quiz.questions.length * 10}
                 </h1>
                 <div>
-                  {quiz.questions.data.map(({ attributes: question, id }) => (
-                    <div key={id}>
+                  {quiz.questions.map((question) => (
+                    <div key={question.id}>
                       <Question questionText={question.questionText} />
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
                         {question.answerOptions.map((option) => (

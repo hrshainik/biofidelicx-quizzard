@@ -54,9 +54,9 @@ const Categories = ({ categories }) => {
             },
           }}
         >
-          {categories.map(({ attributes: category, id }) => (
-            <SwiperSlide key={id}>
-              <CategoryCard {...category} id={id} />
+          {categories.map(({ node: category }) => (
+            <SwiperSlide key={category.id}>
+              <CategoryCard {...category} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-const QuizCard = ({ title, description, quizId, categoryId, category }) => {
+const QuizCard = ({ title, description, slug, category }) => {
   return (
-    <Link href={`/category/${categoryId}/quiz/${quizId}`}>
+    <Link href={`/category/${category.slug}/quiz/${slug}`}>
       <div className="card cursor-pointer my-8">
         {/* <div className="relative z-10 h-56">
           <Image
@@ -20,7 +20,7 @@ const QuizCard = ({ title, description, quizId, categoryId, category }) => {
           <div className="shadow-box"></div>
           <div className="-mt-4 bg-aquamarine-500/80 py-2 px-3.5">
             <span className="font-ct text-xs font-semibold uppercase leading-3 tracking-sm">
-              {category.data.attributes.title}
+              {category.title}
             </span>
           </div>
           <div className="card-con-text w-full p-4 pb-5 pt-0">

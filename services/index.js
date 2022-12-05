@@ -1,48 +1,128 @@
-const QUIZ_URLS = {
-  quiz: `${process.env.NEXT_PUBLIC_API_URL}api/quizzes`,
-  category: `${process.env.NEXT_PUBLIC_API_URL}api/quiz-categories`,
+import { gql, request } from "graphql-request";
+
+const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+const requestHeaders = {
+  Authorization: `Bearer ${process.env.NEXT_PUBLIC_GRAPHCMS_TOKEN}`,
 };
 
 export const getQuizzes = async () => {
-  const res = await fetch(`${QUIZ_URLS.quiz}?populate=deep,2`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-    },
-  });
-  return await res.json();
+  const query = gql`
+    query GetQuizzes() {
+      quizzesConnection {
+        edges {
+          node {
+            slug
+            time
+            title
+            description
+            id
+            category {
+              title
+              slug
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, {}, requestHeaders);
+
+  return result.quizzesConnection;
 };
 
-export const getQuiz = async (id) => {
-  const res = await fetch(`${QUIZ_URLS.quiz}/${id}?populate=deep,3`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-    },
-  });
-  return await res.json();
+export const getQuiz = async (slug) => {
+  const query = gql`
+    query GetQuiz($slug: String!) {
+      quizzesConnection(where: { slug: $slug }) {
+        edges {
+          node {
+            slug
+            time
+            title
+            description
+            id
+            questions {
+              id
+              answerOptions {
+                ... on Answer {
+                  id
+                  isCorrect
+                  answerText
+                }
+              }
+              questionText
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, { slug }, requestHeaders);
+
+  return result.quizzesConnection;
 };
 
 export const getCategories = async () => {
-  const res = await fetch(`${QUIZ_URLS.category}?populate[0]=quizzes`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-    },
-  });
-  return await res.json();
+  const query = gql`
+    query GetCategories() {
+      categoriesConnection {
+        edges {
+          node {
+            description
+            slug
+            title
+            id
+            image {
+              url
+            }
+            icon {
+              url
+            }
+            quizzes {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, {}, requestHeaders);
+
+  return result.categoriesConnection;
 };
 
-export const getCategory = async (id) => {
-  const res = await fetch(`${QUIZ_URLS.category}/${id}?populate=deep,3`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-    },
-  });
-  return await res.json();
+export const getCategory = async (slug) => {
+  const query = gql`
+    query GetCategories($slug: String!) {
+      categoriesConnection(where: { slug: $slug }) {
+        edges {
+          node {
+            description
+            slug
+            title
+            image {
+              url
+            }
+            icon {
+              url
+            }
+            quizzes {
+              id
+              time
+              title
+              description
+              slug
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, { slug }, requestHeaders);
+
+  return result.categoriesConnection;
 };

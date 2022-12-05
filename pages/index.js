@@ -16,9 +16,9 @@ export default function Home({ categoriesInfo, quizzesInfo }) {
   const [quizzes, setQuizzes] = useState([]);
 
   useEffect(() => {
-    setCategories(categoriesInfo.data);
-    setQuizzes(quizzesInfo.data);
-  }, [categoriesInfo.data, quizzesInfo.data]);
+    setCategories(categoriesInfo.edges);
+    setQuizzes(quizzesInfo.edges);
+  }, [categoriesInfo, quizzesInfo]);
 
   return (
     <>
@@ -36,17 +36,12 @@ export default function Home({ categoriesInfo, quizzesInfo }) {
         <meta name="keywords" content="biofidelicx quiz, biofidelicx academy" />
         <meta name="author" content="Habibur Rahman" />
       </Head>
-      <Header />
+      <Header title="Quiz App" />
       <Categories categories={categories} />
       <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
         <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
-          {quizzes.map(({ attributes: quiz, id: quizId }) => (
-            <QuizCard
-              key={quizId}
-              {...quiz}
-              quizId={quizId}
-              categoryId={quiz.category.data.id}
-            />
+          {quizzes.map(({ node: quiz }) => (
+            <QuizCard key={quiz.id} {...quiz} />
           ))}
         </div>
         <div className="col-span-1 lg:col-span-4">

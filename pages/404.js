@@ -1,17 +1,25 @@
 import Head from "next/head";
+import React from "react";
+import { Header } from "../components";
 
-const Custom404 = () => {
+const NotFound = () => {
   return (
     <>
       <Head>
-        <title>Page Not Found - biofidelicX academy</title>
+        <title>Not Found - biofidelicX</title>
       </Head>
-      <div style={{ marginTop: "52px" }}>
-        <h1 className="text-center">Page Not Found</h1>
-        <button className="">Go Back</button>
+      <Header title="Ooops! Page Not Found." />
+      <div className="mx-auto mb-8 px-2 md:px-5">
+        <div className="post-details flex flex-col items-center">
+          <div className="post-shadow"></div>
+          <h2 className="title">Something Went Wrong!</h2>
+          <p className="para">This page does not exist or was removed!</p>
+          <p className="para">We suggest you back to home page.</p>
+          <button className="btn-outline">Back to home</button>
+        </div>
       </div>
     </>
   );
 };
 
-export default Custom404;
+export default NotFound;
