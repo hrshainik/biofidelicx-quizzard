@@ -22,6 +22,7 @@ const Checkbox = ({ value, name, handleRadioClick, isRadioSelected, text }) => {
           height="50"
           viewBox="0 0 50 50"
           xmlns="http://www.w3.org/2000/svg"
+          className="stroke-aquamarine-500"
           style={{ flex: "0 0 1.5rem" }}
         >
           <rect

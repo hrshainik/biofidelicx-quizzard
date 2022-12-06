@@ -1,23 +1,20 @@
 import Link from "next/link";
+import React from "react";
 
-const CategoryCard = ({ title, slug, description, quizzes }) => {
+const CategoryCard = ({ title, image, icon, slug, quizzes, id }) => {
   return (
-    <Link href={`/category/${slug}`}>
-      <a className="m-5 relative flex items-end h-48 transition bg-white-500 border-4 border-gray-900 group hover:bg-aquamarine-500">
-        <span className="absolute inset-0 -translate-x-2 ring-gray-900 -translate-y-2 bg-white-500 ring-4 border-gray-900 -z-10"></span>
-        <span className="absolute inset-0 -translate-x-4 ring-gray-900 -translate-y-4 bg-white-500 ring-4 border-gray-900 -z-20"></span>
-
-        <div className="p-8 lg:group-hover:opacity-0 lg:group-hover:absolute">
-          <p className="text-lg font-bold">{title}</p>
-          <p className="mt-1 font-mono text-xs">{quizzes.length} Quizzes</p>
-        </div>
-
-        <div className="absolute p-8 opacity-0 lg:group-hover:relative lg:group-hover:opacity-100">
-          <p className="text-lg font-bold">{title}</p>
-
-          <p className="mt-1 text-xs">{description}</p>
-        </div>
-      </a>
+    <Link key={id} href={`/category/${slug}`}>
+      <div
+        className="relative ml-2 mt-2 flex h-32 cursor-pointer flex-col justify-end border-2 border-midnight-500 p-3 pb-2 text-white-500 before:absolute before:right-[2px] before:bottom-[2px] before:bg-white-500 after:bg-white-500 before:-left-[6px] before:-top-[6px] before:-z-10 before:border-2 before:border-midnight-500 after:absolute after:right-2 after:bottom-2 after:-left-[10px] after:-top-[10px] after:-z-20 after:border-2 after:border-midnight-500"
+        style={{
+          background: `linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1), transparent), url(${image.url})`,
+        }}
+      >
+        <span className="text-base">
+          {quizzes.length} {quizzes.length > 1 ? "quizzes" : "quiz"}
+        </span>
+        <h3 className="font-h text-2xl font-bold">{title}</h3>
+      </div>
     </Link>
   );
 };

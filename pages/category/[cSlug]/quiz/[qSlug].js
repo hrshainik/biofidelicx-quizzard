@@ -146,7 +146,7 @@ const Quiz = ({ quizInfo }) => {
         <meta property="og:description" content="dynamic text" />
         <meta property="og:image" content="dynamic text" />
       </Head>
-      <Header title={quiz?.title} />
+      <Header title={quiz?.title} subText={`${questions?.length} question`} />
       <div className="mx-auto mb-8 px-2">
         <div className="page-details">
           <div className="page-shadow"></div>
@@ -221,8 +221,6 @@ const Quiz = ({ quizInfo }) => {
                           />
                         ))}
                       </div>
-                      <br />
-                      <br />
                     </div>
                   ))}
                 </div>

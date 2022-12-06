@@ -1,6 +1,14 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getCategories } from "../services";
 
-const Header = ({ imageUrl, title }) => {
+const Header = ({ title, imageUrl, slug, subText, color }) => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getCategories().then((data) => setCategories(data));
+  }, []);
+
   const bgImage = {
     background: `linear-gradient(
       rgba(0, 0, 0, .75), 
@@ -15,21 +23,66 @@ const Header = ({ imageUrl, title }) => {
   return (
     <>
       <main className="hero" style={bgImage}>
-        <div className="mx-auto">
+        <div className="mx-auto mb-8">
           <div className="flex items-center justify-center py-3">
             <Link href="/">
-              <img
-                src="/logo.svg"
-                alt="logo"
-                className="logo h-14 md:h-16 lg:h-20"
-              />
+              <img src="/logo.svg" alt="logo" className="logo" />
             </Link>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="w-11/12 text-center font-h text-3xl font-bold text-white-500 sm:text-4xl md:text-5xl pt-16 md:pt-24 lg:pt-32 pb-24 md:pb-32 lg:pb-40">
-            {title}
-          </h1>
+        <div className="hero-l">
+          <h1 className="main-title">{title}</h1>
+          {subText && slug && color && (
+            <Link href={`/category/${slug}`}>
+              <div className="flex items-center gap-1">
+                <div
+                  className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-52 xl:w-64 2xl:w-96"
+                  style={{ backgroundColor: `${color}` }}
+                ></div>
+                <span
+                  className="post-tag cursor-pointer"
+                  style={{
+                    backgroundColor: `${color}`,
+                  }}
+                >
+                  {subText}
+                </span>
+                <div
+                  className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-52 xl:w-64 2xl:w-96"
+                  style={{ backgroundColor: `${color}` }}
+                ></div>
+              </div>
+            </Link>
+          )}
+
+          {subText && color && !slug && (
+            <div className="flex items-center gap-1">
+              <div
+                className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-52 xl:w-64 2xl:w-96"
+                style={{ backgroundColor: `${color}` }}
+              ></div>
+              <span
+                className="post-tag"
+                style={{
+                  backgroundColor: `${color}`,
+                }}
+              >
+                {subText}
+              </span>
+              <div
+                className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-52 xl:w-64 2xl:w-96"
+                style={{ backgroundColor: `${color}` }}
+              ></div>
+            </div>
+          )}
+
+          {subText && !color && !slug && (
+            <div className="flex items-center gap-1">
+              <div className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-36"></div>
+              <span className="post-tag">{subText}</span>
+              <div className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-36"></div>
+            </div>
+          )}
         </div>
       </main>
     </>

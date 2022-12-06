@@ -11,8 +11,8 @@ const About = () => {
       </Head>
       <Header title="About Us" />
       <div className="mx-auto mb-8 px-2 md:px-5">
-        <div className="post-details">
-          <div className="post-shadow"></div>
+        <div className="page-details">
+          <div className="page-shadow"></div>
           <div className="mb-10">
             <h2 className="title">Our Mission</h2>
             <p className="para">

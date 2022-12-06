@@ -51,7 +51,10 @@ const Category = ({ categoryInfo }) => {
         <meta property="og:description" content="dynamic text" />
         <meta property="og:image" content="dynamic text" />
       </Head>
-      <Header title={category.title} />
+      <Header
+        title={category.title}
+        subText={`${category?.quizzes?.length} quiz`}
+      />
       <div className="mx-auto mb-8 px-2">
         <div className="page-details">
           <div className="page-shadow"></div>
