@@ -20,6 +20,9 @@ export const getQuizzes = async () => {
               title
               slug
             }
+            questions {
+              id
+            }
           }
         }
       }
@@ -115,6 +118,9 @@ export const getCategory = async (slug) => {
               title
               description
               slug
+              questions {
+                id
+              }
             }
           }
         }
