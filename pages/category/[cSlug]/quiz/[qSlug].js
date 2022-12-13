@@ -70,7 +70,7 @@ const Quiz = ({ quizInfo }) => {
   };
 
   const hasNext = useCallback(() => {
-    return index < quiz.questions.length - 1;
+    return index < quiz?.questions.length - 1;
   }, [index, quiz]);
 
   const nextQuestion = () => {
@@ -147,7 +147,7 @@ const Quiz = ({ quizInfo }) => {
         <meta property="og:image" content="dynamic text" />
       </Head>
       <Header title={quiz?.title} subText={`${questions?.length} question`} />
-      <div className="mx-auto mb-8 px-2">
+      <div className="mx-auto px-2">
         <div className="page-details">
           <div className="page-shadow"></div>
           <div className="z-50 bg-white-500">
@@ -157,7 +157,7 @@ const Quiz = ({ quizInfo }) => {
             {!finished ? (
               <div className={`${opacity} transition-opacity duration-300`}>
                 <Question questionText={question?.questionText} />
-                <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 mt-8`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 mt-4`}>
                   {question?.answerOptions.map((option) => (
                     <Checkbox
                       key={option.id}
@@ -169,34 +169,49 @@ const Quiz = ({ quizInfo }) => {
                     />
                   ))}
                 </div>
-                {/* <div className="flex gap-x-4 mt-10 justify-center">
-                  {hasPrev() ? (
-                    <p className="px-2 button rounded border border-green-500">
-                      <button onClick={prevQuestion}>Previous</button>
-                    </p>
-                  ) : null}
+                <div className="sticky bottom-0 bg-white-500 pt-2 pb-3">
+                  <div className="flex justify-between">
+                    {hasPrev() ? (
+                      <button onClick={prevQuestion} className="btn-outline">
+                        Prev
+                      </button>
+                    ) : (
+                      <button
+                        className="btn-outline cursor-not-allowed opacity-50"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        Prev
+                      </button>
+                    )}
 
-                  {hasNext() ? (
-                    <p className="px-2 button rounded border border-green-500">
-                      <button onClick={nextQuestion}>Next</button>
-                    </p>
-                  ) : null}
-                </div> */}
-                <div className="flex justify-between mb-1">
-                  <span className="text-base font-medium text-blue-700 dark:text-white">
-                    Progress
-                  </span>
-                  <span className="text-sm font-medium text-blue-700 dark:text-white">
-                    {`${((index * 100) / quiz?.questions.length).toFixed(0)}%`}
-                  </span>
-                </div>
-                <div className="w-full bg-gray-200 h-2.5 dark:bg-gray-700 transition-all">
-                  <div
-                    className="bg-midnight-600 h-2.5"
-                    style={{
-                      width: `${(index * 100) / quiz?.questions.length}%`,
-                    }}
-                  ></div>
+                    {hasNext() ? (
+                      <button onClick={nextQuestion} className="btn-outline">
+                        Next
+                      </button>
+                    ) : (
+                      <button className="btn-outline" onClick={finishQuiz}>
+                        Submit
+                      </button>
+                    )}
+                  </div>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-base font-medium text-blue-700 dark:text-white">
+                      Progress
+                    </span>
+                    <span className="text-sm font-medium text-blue-700 dark:text-white">
+                      {`${((index * 100) / quiz?.questions.length).toFixed(
+                        0
+                      )}%`}
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 h-2.5 dark:bg-gray-700 transition-all">
+                    <div
+                      className="bg-midnight-600 h-2.5"
+                      style={{
+                        width: `${(index * 100) / quiz?.questions.length}%`,
+                      }}
+                    ></div>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -204,11 +219,11 @@ const Quiz = ({ quizInfo }) => {
                 <h1 className="text-center text-3xl">
                   {correctAnswers.size * 10} / {quiz.questions.length * 10}
                 </h1>
-                <div>
+                <div className="flex flex-col gap-6 md:gap-7 lg:gap-8">
                   {quiz.questions.map((question) => (
                     <div key={question.id}>
                       <Question questionText={question.questionText} />
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
                         {question.answerOptions.map((option) => (
                           <ResultCheckbox
                             key={option.id}

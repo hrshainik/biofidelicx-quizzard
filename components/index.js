@@ -8,5 +8,6 @@ export { default as Layout } from "./Layout";
 export { default as Navbar } from "./Navbar";
 export { default as Question } from "./Question";
 export { default as QuizCard } from "./QuizCard";
+export { default as RecentQuizzes } from "./RecentQuizzes";
 export { default as ResultCheckbox } from "./ResultCheckbox";
 export { default as Timer } from "./Timer";

@@ -26,15 +26,14 @@ const ResultCheckbox = ({
         htmlFor={`${value}`}
         className={`${
           correctAns ? "bg-eastern-blue-500" : "bg-midnight-500"
-        } text-white-500 text-base p-3 cursor-auto flex items-center gap-5 ${
+        } text-white-500 text-base p-3 cursor-auto flex items-center gap-3 ${
           wrongAns.includes(`${value}`) ? "bg-rose-500" : "bg-midnight-500"
         } ${correctAns ? "reverse" : ""}`}
       >
         <svg
-          width="50"
-          height="50"
           viewBox="0 0 50 50"
           xmlns="http://www.w3.org/2000/svg"
+          className="stroke-aquamarine-500 w-5 h-5"
           style={{ flex: "0 0 1.5rem" }}
         >
           <rect

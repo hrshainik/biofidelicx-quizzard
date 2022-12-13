@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { Categories, Header, QuizCard } from "../components";
+import { Categories, Header, QuizCard, RecentQuizzes } from "../components";
 import { getCategories, getQuizzes } from "../services";
 
 export async function getStaticProps() {
@@ -19,8 +19,6 @@ export default function Home({ categoriesInfo, quizzesInfo }) {
     setCategories(categoriesInfo.edges);
     setQuizzes(quizzesInfo.edges);
   }, [categoriesInfo, quizzesInfo]);
-
-  console.log(quizzes);
 
   return (
     <>
@@ -47,7 +45,9 @@ export default function Home({ categoriesInfo, quizzesInfo }) {
           ))}
         </div>
         <div className="col-span-1 lg:col-span-4">
-          <div className="relative lg:sticky lg:top-20"></div>
+          <div className="relative lg:sticky lg:top-20">
+            <RecentQuizzes />
+          </div>
         </div>
       </div>
     </>

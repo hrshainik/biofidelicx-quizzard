@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import { CategoryCard, Header } from "../../components";
+import { CategoryCard, Header, RecentQuizzes } from "../../components";
 import { getCategories } from "../../services";
 
 export async function getStaticProps() {
@@ -32,7 +32,9 @@ const Category = ({ categoriesInfo }) => {
             ))}
           </div>
           <div className="col-span-1 lg:col-span-4">
-            <div className="relative lg:sticky lg:top-20"></div>
+            <div className="relative lg:sticky lg:top-20">
+              <RecentQuizzes />
+            </div>
           </div>
         </div>
       </div>

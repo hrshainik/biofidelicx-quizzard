@@ -3,47 +3,21 @@ import Link from "next/link";
 import React from "react";
 import { Header } from "../components";
 
-const SignUp = () => {
+const LogIn = () => {
   return (
     <>
       <Head>
         <title>Sign up - biofidelicX</title>
       </Head>
-      <Header title="Hi There, Welcome" />
+      <Header title="Welcome Back" />
       <div className="mx-auto mb-8 px-2 md:px-5">
         <div className="page-details">
           <div className="page-shadow"></div>
-          <h3 className="title">Sign Up</h3>
+          <h3 className="title">Log In</h3>
           <p className="para">
             Hey, Enter your details to get sign up to your new account
           </p>
           <div className="flex flex-col gap-4">
-            <label className="input relative">
-              <input
-                className="font-t block input__field w-full border border-midnight-500 bg-transparent py-3 px-3 rounded-none focus:outline-0"
-                type="text"
-                placeholder=" "
-              />
-              <span
-                className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
-              mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left"
-              >
-                Name
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-                className="absolute top-1/2 right-3 -translate-y-1/2"
-              >
-                <path fill="none" d="M0 0h24v24H0z" />
-                <path
-                  d="M4 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"
-                  fill="currentColor"
-                />
-              </svg>
-            </label>
             <label className="input relative">
               <input
                 className="font-t block input__field w-full border border-midnight-500 bg-transparent py-3 px-3 rounded-none focus:outline-0"
@@ -122,16 +96,16 @@ const SignUp = () => {
                 />
               </svg>
             </label>
-            <button className="btn-outline w-full">Sign Up</button>
+            <button className="btn-outline w-full">Log In</button>
           </div>
           <div className="flex flex-col gap-6 items-center mt-6">
-            <span>- Or Sign Up with -</span>
+            <span>- Or Log In with -</span>
             <div className="flex gap-4 justify-center">
               <button>Google</button>
               <button>Facebook</button>
             </div>
             <span>
-              Already have an account? <Link href="/log-in">Log In now</Link>
+              Already have an account? <Link href="/sign-up">Sign Up now</Link>
             </span>
           </div>
         </div>
@@ -140,4 +114,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default LogIn;
