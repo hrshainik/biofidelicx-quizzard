@@ -1,9 +1,16 @@
+import { signOut } from "firebase/auth";
 import Link from "next/link";
 import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../services/firebase";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const [user, loading] = useAuthState(auth);
+  const logoutHandler = () => {
+    signOut(auth);
+  };
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -155,13 +162,27 @@ const Navbar = () => {
               </a>
             </Link>
           </li>
-          <li className="nav-item">
-            <Link href="/sign-up">
-              <a className="nav-links" onClick={closeMobileMenu}>
-                Sign Up
+          {!user ? (
+            <li className="nav-item">
+              <Link href="/sign-up">
+                <a className="nav-links" onClick={closeMobileMenu}>
+                  Sign Up
+                </a>
+              </Link>
+            </li>
+          ) : (
+            <li className="nav-item">
+              <a
+                className="nav-links"
+                onClick={() => {
+                  logoutHandler();
+                  closeMobileMenu();
+                }}
+              >
+                Logout
               </a>
-            </Link>
-          </li>
+            </li>
+          )}
         </ul>
         <div className="share-link">
           <a
