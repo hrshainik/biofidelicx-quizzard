@@ -1,9 +1,34 @@
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import { Header } from "../components";
+import { auth } from "../services/firebase";
 
 const LogIn = () => {
+  const router = useRouter();
+  const [user, loading] = useAuthState(auth);
+  const googleProvider = new GoogleAuthProvider();
+  const signInWithGoogleHandler = async () => {
+    try {
+      const res = await signInWithPopup(auth, googleProvider);
+      toast.success("Successfully signed up.", {
+        position: toast.POSITION.TOP_CENTER,
+        hideProgressBar: true,
+        autoClose: 1500,
+      });
+      router.back();
+    } catch (err) {
+      toast.error("Authentication failed.", {
+        position: toast.POSITION.TOP_CENTER,
+        hideProgressBar: true,
+        autoClose: 1500,
+      });
+    }
+  };
   return (
     <>
       <Head>
@@ -101,7 +126,7 @@ const LogIn = () => {
           <div className="flex flex-col gap-6 items-center mt-6">
             <span>- Or Log In with -</span>
             <div className="flex gap-4 justify-center">
-              <button>Google</button>
+              <button onClick={signInWithGoogleHandler}>Google</button>
               <button>Facebook</button>
             </div>
             <span>
