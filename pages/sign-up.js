@@ -1,4 +1,5 @@
 import {
+  createUserWithEmailAndPassword,
   FacebookAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
@@ -8,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Header } from "../components";
 import { auth } from "../services/firebase";
@@ -17,6 +19,29 @@ const SignUp = () => {
   const [user, loading] = useAuthState(auth);
   const googleProvider = new GoogleAuthProvider();
   const fbProvider = new FacebookAuthProvider();
+  const { register, handleSubmit, watch } = useForm();
+  const onSubmit = async (data) => {
+    try {
+      const res = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      toast.success("Successfully signed up.", {
+        position: toast.POSITION.TOP_CENTER,
+        hideProgressBar: true,
+        autoClose: 1500,
+      });
+      router.back();
+    } catch (err) {
+      console.log(err);
+      toast.error("Authentication failed.", {
+        position: toast.POSITION.TOP_CENTER,
+        hideProgressBar: true,
+        autoClose: 1500,
+      });
+    }
+  };
   const signInWithGoogleHandler = async () => {
     try {
       const res = await signInWithPopup(auth, googleProvider);
@@ -65,12 +90,16 @@ const SignUp = () => {
           <p className="para">
             Hey, Enter your details to get sign up to your new account
           </p>
-          <div className="flex flex-col gap-4">
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <label className="input relative">
               <input
                 className="font-t block input__field w-full border border-midnight-500 bg-transparent py-3 px-3 rounded-none focus:outline-0"
                 type="text"
                 placeholder=" "
+                {...register("displayName", { required: true })}
               />
               <span
                 className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
@@ -97,6 +126,7 @@ const SignUp = () => {
                 className="font-t block input__field w-full border border-midnight-500 bg-transparent py-3 px-3 rounded-none focus:outline-0"
                 type="email"
                 placeholder=" "
+                {...register("email", { required: true })}
               />
               <span
                 className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
@@ -123,6 +153,7 @@ const SignUp = () => {
                 className="font-t block input__field w-full border border-midnight-500 bg-transparent py-3 px-3 rounded-none focus:outline-0"
                 type="password"
                 placeholder=" "
+                {...register("password", { required: true })}
               />
               <span
                 className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
@@ -149,6 +180,14 @@ const SignUp = () => {
                 className="font-t block input__field w-full border border-midnight-500 bg-transparent py-3 px-3 rounded-none focus:outline-0"
                 type="password"
                 placeholder=" "
+                {...register("confirm_password", {
+                  required: true,
+                  validate: (val) => {
+                    if (watch("password") !== val) {
+                      return "Your passwords do no match";
+                    }
+                  },
+                })}
               />
               <span
                 className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
@@ -170,8 +209,12 @@ const SignUp = () => {
                 />
               </svg>
             </label>
-            <button className="btn-outline w-full">Sign Up</button>
-          </div>
+            <input
+              className="btn-outline w-full cursor-pointer"
+              type="submit"
+              value="Sign Up"
+            />
+          </form>
           <div className="flex flex-col gap-6 items-center mt-6">
             <span>- Or Sign Up with -</span>
             <div className="flex gap-4 justify-center">
