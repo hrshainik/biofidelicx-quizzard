@@ -1,4 +1,8 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -12,9 +16,27 @@ const LogIn = () => {
   const router = useRouter();
   const [user, loading] = useAuthState(auth);
   const googleProvider = new GoogleAuthProvider();
+  const fbProvider = new FacebookAuthProvider();
   const signInWithGoogleHandler = async () => {
     try {
       const res = await signInWithPopup(auth, googleProvider);
+      toast.success("Successfully signed up.", {
+        position: toast.POSITION.TOP_CENTER,
+        hideProgressBar: true,
+        autoClose: 1500,
+      });
+      router.back();
+    } catch (err) {
+      toast.error("Authentication failed.", {
+        position: toast.POSITION.TOP_CENTER,
+        hideProgressBar: true,
+        autoClose: 1500,
+      });
+    }
+  };
+  const signInWithFBHandler = async () => {
+    try {
+      const res = await signInWithPopup(auth, fbProvider);
       toast.success("Successfully signed up.", {
         position: toast.POSITION.TOP_CENTER,
         hideProgressBar: true,
@@ -127,7 +149,7 @@ const LogIn = () => {
             <span>- Or Log In with -</span>
             <div className="flex gap-4 justify-center">
               <button onClick={signInWithGoogleHandler}>Google</button>
-              <button>Facebook</button>
+              <button onClick={signInWithFBHandler}>Facebook</button>
             </div>
             <span>
               Already have an account? <Link href="/sign-up">Sign Up now</Link>
