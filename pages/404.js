@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import React from "react";
 import { Header } from "../components";
 
@@ -15,7 +16,9 @@ const NotFound = () => {
           <h2 className="title">Something Went Wrong!</h2>
           <p className="para">This page does not exist or was removed!</p>
           <p className="para">We suggest you back to home page.</p>
-          <button className="btn-outline">Back to home</button>
+          <Link href="/">
+            <button className="btn-outline">Back to home</button>
+          </Link>
         </div>
       </div>
     </>

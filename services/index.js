@@ -132,3 +132,19 @@ export const getCategory = async (slug) => {
 
   return result.categoriesConnection;
 };
+
+export const getRecentQuizzes = async () => {
+  const query = gql`
+    query GetRecentQuizzes {
+      quizzes(orderBy: publishedAt_DESC, first: 5) {
+        slug
+        title
+        id
+        createdAt
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, {}, requestHeaders);
+  return result.quizzes;
+};
