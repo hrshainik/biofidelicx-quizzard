@@ -12,7 +12,7 @@ const Checkbox = ({ value, name, handleRadioClick, isRadioSelected, text }) => {
       />
       <label
         htmlFor={`${value}`}
-        className={`bg-midnight-500 text-white-500 text-base p-3 cursor-pointer flex justify-between items-center gap-3 ${
+        className={`bg-midnight-500 text-white-500 text-base p-3 cursor-pointer flex justify-between items-center gap-3 h-full ${
           isRadioSelected(`${value}`) ? "checked" : ""
         }`}
         style={{ wordWrap: "break-word" }}
@@ -29,12 +29,12 @@ const Checkbox = ({ value, name, handleRadioClick, isRadioSelected, text }) => {
             width="47.48"
             height="47.48"
             strokeWidth="3"
-            className="box"
+            className="box stroke-aquamarine-500"
           />
           <path
             d="M9.46674 27.4L18.4667 36.4L41.1334 13.7333"
             strokeWidth="3.36"
-            className="check"
+            className="check stroke-aquamarine-500"
           />
         </svg>
         <span style={{ flex: "1 1 auto", wordWrap: "break-word" }}>{text}</span>

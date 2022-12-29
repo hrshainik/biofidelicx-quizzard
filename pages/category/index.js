@@ -20,7 +20,7 @@ const Category = ({ categoriesInfo }) => {
   return (
     <>
       <Head>
-        <title>Catetories</title>
+        <title>Catetories - biofidelicX quiz</title>
       </Head>
       <Header title="Categories" subText={`${categories.length} category`} />
       <div className="page-details">

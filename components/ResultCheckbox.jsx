@@ -1,8 +1,6 @@
 const ResultCheckbox = ({
   value,
   name,
-  handleRadioClick,
-  isRadioSelected,
   text,
   correctAns,
   correctAnsArr,
@@ -12,6 +10,11 @@ const ResultCheckbox = ({
   const wrongAns = selectedAns.filter(
     (ans) => correctAnsArr.indexOf(ans) == -1
   );
+  // console.log("wrongAns:", wrongAns);
+  // console.log("correctAns:", correctAns);
+  // console.log("correctAnsArr:", correctAnsArr);
+  // console.log("selectedAns:", selectedAns);
+  // console.log("handleCorrectAns:", handleCorrectAns);
 
   return (
     <div className="checkbox" onLoad={handleCorrectAns}>
@@ -26,7 +29,7 @@ const ResultCheckbox = ({
         htmlFor={`${value}`}
         className={`${
           correctAns ? "bg-eastern-blue-500" : "bg-midnight-500"
-        } text-white-500 text-base p-3 cursor-auto flex items-center gap-3 ${
+        } text-white-500 h-full text-base p-3 cursor-auto flex items-center gap-3 ${
           wrongAns.includes(`${value}`)
             ? "bg-rose-500 crossed"
             : "bg-midnight-500"
@@ -44,12 +47,12 @@ const ResultCheckbox = ({
             width="47.48"
             height="47.48"
             strokeWidth="3"
-            className="box"
+            className="box stroke-aquamarine-500"
           />
           <path
             d="M9.46674 27.4L18.4667 36.4L41.1334 13.7333"
             strokeWidth="3.36"
-            className="check"
+            className="check stroke-aquamarine-500"
           />
           <line
             x1="10"
@@ -57,7 +60,7 @@ const ResultCheckbox = ({
             x2="40"
             y2="10"
             strokeWidth="3.36"
-            className="cross"
+            className="cross stroke-white-500"
           />
           <line
             x1="10"
@@ -65,7 +68,7 @@ const ResultCheckbox = ({
             x2="40"
             y2="40"
             strokeWidth="3.36"
-            className="cross"
+            className="cross stroke-white-500"
           />
         </svg>
         <span style={{ flex: "1 1 auto", wordWrap: "break-word" }}>{text}</span>

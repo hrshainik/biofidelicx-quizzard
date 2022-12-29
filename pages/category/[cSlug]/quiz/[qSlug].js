@@ -45,6 +45,7 @@ const Quiz = ({ quizInfo }) => {
   const [selectedRadioBtn, setSelectedRadioBtn] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(new Set());
   const [correctAnswerArr, setCorrectAnswerArr] = useState([]);
+  const [correctQuestionArr, setCorrectQuestionArr] = useState([]);
   const [collectSelectedAns, setCollectSelectedAns] = useState([]);
   const [finished, setFinished] = useState(false);
   const [opacity, setOpacity] = useState("opacity-100");
@@ -119,19 +120,19 @@ const Quiz = ({ quizInfo }) => {
     setFinished(true);
   }, []);
 
-  const checkOption = (e, option) => {
+  const checkOption = (e, option, question) => {
     setCollectSelectedAns((ans) => ans.concat(e.target.value));
     if (option.isCorrect) {
       setCorrectAnswerArr([...correctAnswerArr, `${option.id}`]);
     }
     if (option.isCorrect && !isCorrectlyAnswered()) {
       correctAnswers.add(index);
+      setCorrectQuestionArr([...correctQuestionArr, question.id]);
     } else if (!option.isCorrect && isCorrectlyAnswered()) {
       correctAnswers.delete(index);
       setCorrectAnswers(correctAnswers);
     }
     setSelectedRadioBtn(e.target.value);
-    nextQuestion();
   };
 
   const isRadioSelected = (value) => {
@@ -168,7 +169,9 @@ const Quiz = ({ quizInfo }) => {
         <div className="pb-0 page-details">
           <div className="page-shadow"></div>
           <div className="z-50 bg-white-500">
-            {quizTime && <Timer quizTime={quizTime} finishQuiz={finishQuiz} />}
+            {quizTime ? (
+              <Timer quizTime={quizTime} finishQuiz={finishQuiz} />
+            ) : null}
             {!finished ? (
               <>
                 <div className={`${opacity} transition-opacity duration-300`}>
@@ -178,7 +181,9 @@ const Quiz = ({ quizInfo }) => {
                       <Checkbox
                         key={option.id}
                         value={option.id}
-                        handleRadioClick={(e) => checkOption(e, option)}
+                        handleRadioClick={(e) =>
+                          checkOption(e, option, question)
+                        }
                         isRadioSelected={isRadioSelected}
                         text={option.answerText}
                         name={question.id}
@@ -199,11 +204,13 @@ const Quiz = ({ quizInfo }) => {
                       Prev
                     </button>
                   )}
-                  <div className="w-full bg-gray-200 h-2.5 dark:bg-gray-700 transition-all">
+                  <div className="w-full bg-gray-200 h-2.5 transition-all">
                     <div
                       className="bg-midnight-600 h-2.5"
                       style={{
-                        width: `${(index * 100) / quiz?.questions.length}%`,
+                        width: `${
+                          ((index + 1) * 100) / quiz?.questions.length
+                        }%`,
                       }}
                     ></div>
                   </div>
@@ -236,7 +243,11 @@ const Quiz = ({ quizInfo }) => {
                 <div className="flex flex-col gap-6 md:gap-7 lg:gap-8">
                   {quiz.questions.map((question) => (
                     <div key={question.id}>
-                      <Question questionText={question.questionText} />
+                      <Question
+                        questionText={question.questionText}
+                        correctQuestion={correctQuestionArr}
+                        id={question.id}
+                      />
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
                         {question.answerOptions.map((option) => (
                           <ResultCheckbox

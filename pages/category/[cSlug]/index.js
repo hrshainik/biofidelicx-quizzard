@@ -33,7 +33,7 @@ const Category = ({ categoryInfo }) => {
   return (
     <>
       <Head>
-        <title>{category.title}</title>
+        <title>{category.title} - biofidelicX quiz</title>
         <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=7" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
