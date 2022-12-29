@@ -27,8 +27,10 @@ const ResultCheckbox = ({
         className={`${
           correctAns ? "bg-eastern-blue-500" : "bg-midnight-500"
         } text-white-500 text-base p-3 cursor-auto flex items-center gap-3 ${
-          wrongAns.includes(`${value}`) ? "bg-rose-500" : "bg-midnight-500"
-        } ${correctAns ? "reverse" : ""}`}
+          wrongAns.includes(`${value}`)
+            ? "bg-rose-500 crossed"
+            : "bg-midnight-500"
+        } ${correctAns ? "checked" : ""}`}
       >
         <svg
           viewBox="0 0 50 50"
@@ -48,6 +50,22 @@ const ResultCheckbox = ({
             d="M9.46674 27.4L18.4667 36.4L41.1334 13.7333"
             strokeWidth="3.36"
             className="check"
+          />
+          <line
+            x1="10"
+            y1="40"
+            x2="40"
+            y2="10"
+            strokeWidth="3.36"
+            className="cross"
+          />
+          <line
+            x1="10"
+            y1="10"
+            x2="40"
+            y2="40"
+            strokeWidth="3.36"
+            className="cross"
           />
         </svg>
         <span style={{ flex: "1 1 auto", wordWrap: "break-word" }}>{text}</span>

@@ -103,9 +103,15 @@ const Quiz = ({ quizInfo }) => {
   };
 
   const prevQuestion = () => {
-    if (index !== 0) {
-      setIndex(index - 1);
-    }
+    setTimeout(() => {
+      setOpacity("opacity-0");
+    }, 500);
+
+    setTimeout(() => {
+      if (index !== 0) {
+        setIndex(index - 1);
+      }
+    }, 800);
   };
 
   const finishQuiz = useCallback(() => {
@@ -159,62 +165,40 @@ const Quiz = ({ quizInfo }) => {
       </Head>
       <Header title={quiz?.title} subText={`${questions?.length} question`} />
       <div className="mx-auto px-2">
-        <div className="page-details">
+        <div className="pb-0 page-details">
           <div className="page-shadow"></div>
           <div className="z-50 bg-white-500">
-            {quizTime ? (
-              <Timer quizTime={quizTime} finishQuiz={finishQuiz} />
-            ) : null}
+            {quizTime && <Timer quizTime={quizTime} finishQuiz={finishQuiz} />}
             {!finished ? (
-              <div className={`${opacity} transition-opacity duration-300`}>
-                <Question questionText={question?.questionText} />
-                <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 mt-4`}>
-                  {question?.answerOptions.map((option) => (
-                    <Checkbox
-                      key={option.id}
-                      value={option.id}
-                      handleRadioClick={(e) => checkOption(e, option)}
-                      isRadioSelected={isRadioSelected}
-                      text={option.answerText}
-                      name={question.id}
-                    />
-                  ))}
+              <>
+                <div className={`${opacity} transition-opacity duration-300`}>
+                  <Question questionText={question?.questionText} />
+                  <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 mt-3`}>
+                    {question?.answerOptions.map((option) => (
+                      <Checkbox
+                        key={option.id}
+                        value={option.id}
+                        handleRadioClick={(e) => checkOption(e, option)}
+                        isRadioSelected={isRadioSelected}
+                        text={option.answerText}
+                        name={question.id}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <div className="sticky bottom-0 bg-white-500 pt-2 pb-3">
-                  <div className="flex justify-between">
-                    {hasPrev() ? (
-                      <button onClick={prevQuestion} className="btn-outline">
-                        Prev
-                      </button>
-                    ) : (
-                      <button
-                        className="btn-outline cursor-not-allowed opacity-50"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        Prev
-                      </button>
-                    )}
-
-                    {hasNext() ? (
-                      <button onClick={nextQuestion} className="btn-outline">
-                        Next
-                      </button>
-                    ) : (
-                      <button className="btn-outline" onClick={finishQuiz}>
-                        Submit
-                      </button>
-                    )}
-                  </div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-base font-medium text-blue-700 dark:text-white">
-                      Progress
-                    </span>
-                    <span className="text-sm font-medium text-blue-700 dark:text-white">
-                      {`${((index * 100) / quiz?.questions.length).toFixed(
-                        0
-                      )}%`}
-                    </span>
-                  </div>
+                <div className="flex justify-between items-end gap-2 sticky bottom-0 bg-white-500 py-4">
+                  {hasPrev() ? (
+                    <button onClick={prevQuestion} className="btn-outline">
+                      Prev
+                    </button>
+                  ) : (
+                    <button
+                      className="btn-outline cursor-not-allowed opacity-50"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      Prev
+                    </button>
+                  )}
                   <div className="w-full bg-gray-200 h-2.5 dark:bg-gray-700 transition-all">
                     <div
                       className="bg-midnight-600 h-2.5"
@@ -223,18 +207,37 @@ const Quiz = ({ quizInfo }) => {
                       }}
                     ></div>
                   </div>
+                  {hasNext() ? (
+                    <button onClick={nextQuestion} className="btn-outline">
+                      Next
+                    </button>
+                  ) : (
+                    <button className="btn-outline" onClick={finishQuiz}>
+                      Submit
+                    </button>
+                  )}
                 </div>
-              </div>
+              </>
             ) : (
               <>
-                <h1 className="text-center text-3xl">
-                  {correctAnswers.size * 10} / {quiz.questions.length * 10}
-                </h1>
+                <h3 className="text-center font-h">Quiz Result</h3>
+                <div className="p-3 flex flex-col items-center mb-5">
+                  <span className="text-3xl font-h">
+                    {correctAnswers.size * 10} / {quiz.questions.length * 10}
+                  </span>
+                  <p className="text-center text-xl font-semibold font-h">
+                    Great
+                  </p>
+                  <p className="text-center">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Magni, repellat.
+                  </p>
+                </div>
                 <div className="flex flex-col gap-6 md:gap-7 lg:gap-8">
                   {quiz.questions.map((question) => (
                     <div key={question.id}>
                       <Question questionText={question.questionText} />
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
                         {question.answerOptions.map((option) => (
                           <ResultCheckbox
                             key={option.id}

@@ -12,8 +12,6 @@ const Navbar = () => {
     signOut(auth);
   };
 
-  console.log(user);
-
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 

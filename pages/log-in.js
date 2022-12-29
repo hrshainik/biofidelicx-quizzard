@@ -34,7 +34,6 @@ const LogIn = () => {
       });
       router.back();
     } catch (err) {
-      console.log(err);
       toast.error("Authentication failed.", {
         position: toast.POSITION.TOP_CENTER,
         hideProgressBar: true,
@@ -153,7 +152,6 @@ const LogIn = () => {
               value="Log In"
             />
           </form>
-          onSubmit={handleSubmit(onSubmit)}
           <div className="flex flex-col gap-6 items-center mt-6">
             <span>- Or Log In with -</span>
             <div className="flex gap-4 justify-center">

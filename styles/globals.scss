@@ -255,11 +255,34 @@ h6 {
   transition: stroke-dashoffset 0.3s linear;
 }
 
-.reverse {
+.cross {
+  @apply fill-transparent;
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  transition: stroke-dashoffset 0.3s linear;
+  stroke: white;
+}
+
+.checked {
   .box {
     stroke-dashoffset: 320;
   }
   .check {
+    stroke-dashoffset: 0;
+  }
+  .cross {
+    stroke-dashoffset: 70;
+  }
+}
+
+.crossed {
+  .box {
+    stroke-dashoffset: 320;
+  }
+  .check {
+    stroke-dashoffset: 70;
+  }
+  .cross {
     stroke-dashoffset: 0;
   }
 }

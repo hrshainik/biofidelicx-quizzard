@@ -12,8 +12,8 @@ const Checkbox = ({ value, name, handleRadioClick, isRadioSelected, text }) => {
       />
       <label
         htmlFor={`${value}`}
-        className={`bg-midnight-500 text-white-500 text-base p-3 cursor-pointer flex justify-between items-center gap-3${
-          isRadioSelected(`${value}`) ? "reverse" : ""
+        className={`bg-midnight-500 text-white-500 text-base p-3 cursor-pointer flex justify-between items-center gap-3 ${
+          isRadioSelected(`${value}`) ? "checked" : ""
         }`}
         style={{ wordWrap: "break-word" }}
       >

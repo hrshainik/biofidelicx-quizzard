@@ -34,7 +34,6 @@ const SignUp = () => {
       });
       router.back();
     } catch (err) {
-      console.log(err);
       toast.error("Authentication failed.", {
         position: toast.POSITION.TOP_CENTER,
         hideProgressBar: true,
