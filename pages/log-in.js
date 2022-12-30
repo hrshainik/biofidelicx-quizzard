@@ -27,6 +27,7 @@ const LogIn = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
@@ -60,6 +61,7 @@ const LogIn = () => {
         theme: "light",
         transition: Slide,
       });
+      reset();
     }
   };
   const signInWithGoogleHandler = async () => {

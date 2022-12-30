@@ -65,6 +65,7 @@ const SignUp = () => {
         theme: "light",
         transition: Slide,
       });
+      reset();
     }
   };
   const signInWithGoogleHandler = async () => {
