@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Slide, toast, ToastContainer } from "react-toastify";
+import { Slide, toast } from "react-toastify";
 import { Header } from "../components";
 import { auth } from "../services/firebase";
 
@@ -133,18 +133,6 @@ const SignUp = () => {
         <title>Sign up - biofidelicX</title>
       </Head>
       <Header title="Hi There, Welcome" />
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <div className="mx-auto mb-8 px-2 md:px-5">
         <div className="page-details">
           <div className="page-shadow"></div>
