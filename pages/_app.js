@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
+import "react-toastify/dist/ReactToastify.css";
 import { Layout } from "../components";
 import "../styles/globals.scss";
 

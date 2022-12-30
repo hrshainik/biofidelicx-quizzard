@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import Link from "next/link";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Slide, toast } from "react-toastify";
 import { auth } from "../services/firebase";
 
 const Navbar = () => {
@@ -9,7 +10,33 @@ const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
   const [user, loading] = useAuthState(auth);
   const logoutHandler = () => {
-    signOut(auth);
+    signOut(auth)
+      .then(() => {
+        toast.success("Successfully loged out", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+      })
+      .catch((error) => {
+        toast.error("Log out problem", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+      });
   };
 
   const handleClick = () => setClick(!click);
