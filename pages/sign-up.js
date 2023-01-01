@@ -192,7 +192,7 @@ const SignUp = () => {
                   type="email"
                   placeholder=" "
                   {...register("email", {
-                    required: "Email Address is required",
+                    required: "Email address is required",
                     pattern: {
                       value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                       message: "Invalid email address",
@@ -237,7 +237,8 @@ const SignUp = () => {
                     pattern: {
                       value:
                         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
-                      message: "Password must be strong",
+                      message:
+                        "Password must contain uppercase, lowercase, special character, number, eight characters or more",
                     },
                   })}
                   aria-invalid={errors.password ? "true" : "false"}
@@ -289,7 +290,7 @@ const SignUp = () => {
                     required: "Confirm Password is required",
                     validate: (val) => {
                       if (watch("password") !== val) {
-                        return "Your passwords do no match";
+                        return "Your passwords do not match";
                       }
                     },
                   })}

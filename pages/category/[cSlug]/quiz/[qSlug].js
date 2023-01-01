@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -47,6 +48,7 @@ const Quiz = ({ quizInfo }) => {
   const [correctAnswerArr, setCorrectAnswerArr] = useState([]);
   const [correctQuestionArr, setCorrectQuestionArr] = useState([]);
   const [collectSelectedAns, setCollectSelectedAns] = useState([]);
+  const [result, setResult] = useState();
   const [finished, setFinished] = useState(false);
   const [opacity, setOpacity] = useState("opacity-100");
   const [quizTime, setQuizTime] = useState();
@@ -143,7 +145,12 @@ const Quiz = ({ quizInfo }) => {
     setCorrectAnswerArr([...correctAnswerArr, option.id]);
   };
 
-  const result = (100 / quiz.questions.length) * correctAnswers.size;
+  // const result = ;
+  useEffect(() => {
+    if (finished) {
+      setResult((100 / quiz?.questions?.length) * correctAnswers?.size);
+    }
+  }, [finished]);
 
   return (
     <>
@@ -229,26 +236,45 @@ const Quiz = ({ quizInfo }) => {
               </>
             ) : (
               <>
-                <h3 className="text-center font-h">Quiz Result</h3>
-                <div className="p-3 flex flex-col items-center mb-5">
-                  <span className="text-3xl font-h">{result} / 100</span>
-                  <p className="text-center text-xl font-semibold font-h">
+                <h3 className="text-center m-auto mb-4 w-3/4 max-w-xl font-h text-2xl font-semibold sm:text-3xl md:text-4xl">
+                  Quiz Result
+                </h3>
+                <div className="p-3 pt-0 flex flex-col items-center mb-5">
+                  <div className="relative h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36">
+                    {result >= 80 ? (
+                      <Image src="/great.svg" alt="great icon" layout="fill" />
+                    ) : result >= 50 ? (
+                      <Image src="/good.svg" alt="good icon" layout="fill" />
+                    ) : result >= 33 ? (
+                      <Image src="/pass.svg" alt="pass icon" layout="fill" />
+                    ) : (
+                      <Image src="/fail.svg" alt="fail icon" layout="fill" />
+                    )}
+                  </div>
+                  <span className="text-3xl font-light font-t md:text-4xl lg:text-5xl">
+                    {result} / 100
+                  </span>
+                  <p
+                    className={`text-center text-2xl md:text-3xl mt-4 font-bold font-h tracking-sm ${
+                      result < 33 ? "text-rose-500" : "text-midnight-500"
+                    }`}
+                  >
                     {result >= 80
-                      ? "A+"
+                      ? "Great"
                       : result >= 50
-                      ? "B"
+                      ? "Good"
                       : result >= 33
-                      ? "C"
-                      : "F"}
+                      ? "Passed"
+                      : "Failed"}
                   </p>
-                  <p className="text-center">
+                  <p className="text-center text-lg md:text-xl">
                     {result >= 80
-                      ? "You are great!"
+                      ? "You have immense potential to create wonders in life! Wishing you the very best for all your upcoming endeavors!"
                       : result >= 50
-                      ? "You are good but you need to be more serious!"
+                      ? "You are good but you need to be more serious for doing great in future."
                       : result >= 33
-                      ? "You passed but you need hark work for geeting good result"
-                      : "You are failed"}
+                      ? "You passed but you need hard work for getting a good result in future."
+                      : "Never give up. Failure is a necessary component of success. Consider failure as an opportunity to perform better than before."}
                   </p>
                 </div>
                 <div className="flex flex-col gap-6 md:gap-7 lg:gap-8">
