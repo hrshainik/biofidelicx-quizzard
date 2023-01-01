@@ -143,6 +143,8 @@ const Quiz = ({ quizInfo }) => {
     setCorrectAnswerArr([...correctAnswerArr, option.id]);
   };
 
+  const result = (100 / quiz.questions.length) * correctAnswers.size;
+
   return (
     <>
       <Head>
@@ -169,11 +171,11 @@ const Quiz = ({ quizInfo }) => {
         <div className="pb-0 page-details">
           <div className="page-shadow"></div>
           <div className="z-50 bg-white-500">
-            {quizTime ? (
-              <Timer quizTime={quizTime} finishQuiz={finishQuiz} />
-            ) : null}
             {!finished ? (
               <>
+                {quizTime ? (
+                  <Timer quizTime={quizTime} finishQuiz={finishQuiz} />
+                ) : null}
                 <div className={`${opacity} transition-opacity duration-300`}>
                   <Question questionText={question?.questionText} />
                   <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 mt-3`}>
@@ -229,15 +231,24 @@ const Quiz = ({ quizInfo }) => {
               <>
                 <h3 className="text-center font-h">Quiz Result</h3>
                 <div className="p-3 flex flex-col items-center mb-5">
-                  <span className="text-3xl font-h">
-                    {correctAnswers.size * 10} / {quiz.questions.length * 10}
-                  </span>
+                  <span className="text-3xl font-h">{result} / 100</span>
                   <p className="text-center text-xl font-semibold font-h">
-                    Great
+                    {result >= 80
+                      ? "A+"
+                      : result >= 50
+                      ? "B"
+                      : result >= 33
+                      ? "C"
+                      : "F"}
                   </p>
                   <p className="text-center">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Magni, repellat.
+                    {result >= 80
+                      ? "You are great!"
+                      : result >= 50
+                      ? "You are good but you need to be more serious!"
+                      : result >= 33
+                      ? "You passed but you need hark work for geeting good result"
+                      : "You are failed"}
                   </p>
                 </div>
                 <div className="flex flex-col gap-6 md:gap-7 lg:gap-8">
