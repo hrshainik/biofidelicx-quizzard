@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import {
   Checkbox,
   Header,
@@ -11,7 +9,6 @@ import {
   Timer,
 } from "../../../../components";
 import { getCategories, getQuiz } from "../../../../services";
-import { auth } from "../../../../services/firebase";
 
 export async function getStaticProps({ params }) {
   const quizInfo = await getQuiz(params.qSlug);
@@ -52,14 +49,6 @@ const Quiz = ({ quizInfo }) => {
   const [finished, setFinished] = useState(false);
   const [opacity, setOpacity] = useState("opacity-100");
   const [quizTime, setQuizTime] = useState();
-  const [user, loading] = useAuthState(auth);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!user) {
-      router.push("/sign-up");
-    }
-  }, [user]);
 
   const getQuestion = (questions, index) => {
     if (questions) {

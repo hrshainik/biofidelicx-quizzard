@@ -1,22 +1,15 @@
-import {
-  createUserWithEmailAndPassword,
-  FacebookAuthProvider,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Slide, toast } from "react-toastify";
 import { Header } from "../components";
-import { auth } from "../services/firebase";
+import { useAuth } from "../contexts/AuthContext";
 
 const SignUp = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordCShown, setPasswordCShown] = useState(false);
+  const { signup, loginWithGoogle, loginWithFacebook } = useAuth();
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
@@ -24,23 +17,18 @@ const SignUp = () => {
   const togglePasswordC = () => {
     setPasswordCShown(!passwordCShown);
   };
-  const router = useRouter();
-  const [user, loading] = useAuthState(auth);
-  const googleProvider = new GoogleAuthProvider();
-  const fbProvider = new FacebookAuthProvider();
+
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
     try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
+      console.log(data);
+      const res = await signup(data.email, data.password, data.name);
       toast.success("Successfully loged in", {
         position: "top-center",
         autoClose: 3000,
@@ -52,7 +40,6 @@ const SignUp = () => {
         theme: "light",
         transition: Slide,
       });
-      router.back();
     } catch (err) {
       toast.error("Authentication failed", {
         position: "top-center",
@@ -70,7 +57,7 @@ const SignUp = () => {
   };
   const signInWithGoogleHandler = async () => {
     try {
-      const res = await signInWithPopup(auth, googleProvider);
+      const res = await loginWithGoogle();
       toast.success("Successfully loged in", {
         position: "top-center",
         autoClose: 3000,
@@ -82,7 +69,6 @@ const SignUp = () => {
         theme: "light",
         transition: Slide,
       });
-      router.back();
     } catch (err) {
       toast.error("Authentication failed", {
         position: "top-center",
@@ -99,7 +85,7 @@ const SignUp = () => {
   };
   const signInWithFBHandler = async () => {
     try {
-      const res = await signInWithPopup(auth, fbProvider);
+      const res = await loginWithFacebook();
       toast.success("Successfully loged in", {
         position: "top-center",
         autoClose: 3000,
@@ -111,7 +97,6 @@ const SignUp = () => {
         theme: "light",
         transition: Slide,
       });
-      router.back();
     } catch (err) {
       toast.error("Authentication failed", {
         position: "top-center",

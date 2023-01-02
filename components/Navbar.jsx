@@ -1,42 +1,40 @@
-import { signOut } from "firebase/auth";
 import Link from "next/link";
 import { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Slide, toast } from "react-toastify";
-import { auth } from "../services/firebase";
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const [user, loading] = useAuthState(auth);
-  const logoutHandler = () => {
-    signOut(auth)
-      .then(() => {
-        toast.success("Successfully loged out", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Slide,
-        });
-      })
-      .catch((error) => {
-        toast.error("Log out problem", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Slide,
-        });
+  const { logout, currentUser } = useAuth();
+
+  const logoutHandler = async () => {
+    try {
+      const res = await logout();
+      toast.success("Successfully loged out", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Slide,
       });
+    } catch (error) {
+      toast.error("Authentication failed", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Slide,
+      });
+    }
   };
 
   const handleClick = () => setClick(!click);
@@ -189,7 +187,7 @@ const Navbar = () => {
               </a>
             </Link>
           </li>
-          {!user ? (
+          {!currentUser ? (
             <li className="nav-item">
               <Link href="/sign-up">
                 <a className="nav-links" onClick={closeMobileMenu}>
@@ -206,6 +204,7 @@ const Navbar = () => {
                   closeMobileMenu();
                 }}
               >
+                {/* {currentUser.displayName} */}
                 Logout
               </a>
             </li>
