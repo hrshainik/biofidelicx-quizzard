@@ -242,13 +242,33 @@ const Quiz = ({ quizInfo }) => {
                 <div className="p-3 pt-0 flex flex-col items-center mb-5">
                   <div className="relative h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36">
                     {result >= 80 ? (
-                      <Image src="/great.svg" alt="great icon" layout="fill" />
+                      <Image
+                        src="/great.svg"
+                        alt="great icon"
+                        layout="fill"
+                        priority={true}
+                      />
                     ) : result >= 50 ? (
-                      <Image src="/good.svg" alt="good icon" layout="fill" />
+                      <Image
+                        src="/good.svg"
+                        alt="good icon"
+                        layout="fill"
+                        priority={true}
+                      />
                     ) : result >= 33 ? (
-                      <Image src="/pass.svg" alt="pass icon" layout="fill" />
+                      <Image
+                        src="/pass.svg"
+                        alt="pass icon"
+                        layout="fill"
+                        priority={true}
+                      />
                     ) : (
-                      <Image src="/fail.svg" alt="fail icon" layout="fill" />
+                      <Image
+                        src="/fail.svg"
+                        alt="fail icon"
+                        layout="fill"
+                        priority={true}
+                      />
                     )}
                   </div>
                   <span className="text-3xl font-light font-t md:text-4xl lg:text-5xl">

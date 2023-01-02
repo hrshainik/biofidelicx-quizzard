@@ -358,3 +358,7 @@ h6 {
     }
   }
 }
+
+.pagination {
+  @apply col-span-1 flex justify-between md:col-[1_/_span_2];
+}

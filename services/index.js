@@ -5,10 +5,10 @@ const requestHeaders = {
   Authorization: `Bearer ${process.env.NEXT_PUBLIC_GRAPHCMS_TOKEN}`,
 };
 
-export const getQuizzes = async () => {
+export const getQuizzes = async (limit, offset) => {
   const query = gql`
-    query GetQuizzes() {
-      quizzesConnection {
+    query GetQuizzes($limit: Int!, $offset: Int!) {
+      quizzesConnection(first: $limit, skip: $offset) {
         edges {
           node {
             slug
@@ -25,11 +25,20 @@ export const getQuizzes = async () => {
             }
           }
         }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+        }
       }
     }
   `;
 
-  const result = await request(graphqlAPI, query, {}, requestHeaders);
+  const result = await request(
+    graphqlAPI,
+    query,
+    { limit, offset },
+    requestHeaders
+  );
 
   return result.quizzesConnection;
 };
@@ -140,11 +149,32 @@ export const getRecentQuizzes = async () => {
         slug
         title
         id
-        createdAt
+        category {
+          title
+        }
+        questions {
+          id
+        }
       }
     }
   `;
 
   const result = await request(graphqlAPI, query, {}, requestHeaders);
   return result.quizzes;
+};
+
+export const getTotalQuizNumber = async () => {
+  const query = gql`
+    query GetTotalQuizNumber {
+      quizzesConnection {
+        aggregate {
+          count
+        }
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, {}, requestHeaders);
+
+  return result.quizzesConnection;
 };

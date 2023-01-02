@@ -19,6 +19,7 @@ function MyApp({ Component, pageProps }) {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        limit={3}
         theme="light"
       />
     </Layout>

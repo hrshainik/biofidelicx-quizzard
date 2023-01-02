@@ -5,6 +5,7 @@ export { default as Checkbox } from "./Checkbox";
 export { default as Footer } from "./Footer";
 export { default as Header } from "./Header";
 export { default as Layout } from "./Layout";
+export { default as Loader } from "./Loader";
 export { default as Navbar } from "./Navbar";
 export { default as Question } from "./Question";
 export { default as QuizCard } from "./QuizCard";

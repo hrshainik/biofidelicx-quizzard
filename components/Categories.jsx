@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
 import { Autoplay, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { getCategories } from "../services";
 import CategoryCard from "./CategoryCard";
 
-const Categories = ({ categories }) => {
+const Categories = () => {
+  const [categories, setCategories] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  useEffect(() => {
+    getCategories().then(({ edges: result }) => {
+      setCategories(result);
+      setDataLoaded(true);
+    });
+  }, []);
+
   return (
     <div className="w-full">
       <div className="container mx-auto mb-8" style={{ marginTop: "-6rem" }}>
