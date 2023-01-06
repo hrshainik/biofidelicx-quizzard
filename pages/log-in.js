@@ -21,9 +21,9 @@ const LogIn = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     try {
-      const res = await login(data.email, data.password);
+      const res = login(data.email, data.password);
       toast.success("Successfully loged in", {
         position: "top-center",
         autoClose: 3000,
@@ -52,9 +52,9 @@ const LogIn = () => {
       reset();
     }
   };
-  const signInWithGoogleHandler = async () => {
+  const signInWithGoogleHandler = () => {
     try {
-      const res = await loginWithGoogle();
+      const res = loginWithGoogle();
       toast.success("Successfully loged in", {
         position: "top-center",
         autoClose: 3000,
@@ -81,9 +81,9 @@ const LogIn = () => {
       });
     }
   };
-  const signInWithFBHandler = async () => {
+  const signInWithFBHandler = () => {
     try {
-      const res = await loginWithFacebook();
+      const res = loginWithFacebook();
       toast.success("Successfully loged in", {
         position: "top-center",
         autoClose: 3000,

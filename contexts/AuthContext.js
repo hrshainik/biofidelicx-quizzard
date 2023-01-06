@@ -34,13 +34,19 @@ export function AuthProvider({ children }) {
   }, []);
 
   // signup function
-  async function signup(email, password, name) {
+  function signup(email, password, name) {
     const auth = getAuth();
-    Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
-    await createUserWithEmailAndPassword(auth, email, password);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
+        const user = result.user;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     // update profile
-    await updateProfile(auth.currentUser, {
+    updateProfile(auth.currentUser, {
       displayName: name,
     });
 
@@ -53,31 +59,54 @@ export function AuthProvider({ children }) {
   // login function
   function login(email, password) {
     const auth = getAuth();
-    Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
+        const user = result.user;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   // login with google function
   function loginWithGoogle() {
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
-    Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
-    return signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
+        const user = result.user;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   // login with facebook function
   function loginWithFacebook() {
     const facebookProvider = new FacebookAuthProvider();
     const auth = getAuth();
-    Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
-    return signInWithPopup(auth, facebookProvider);
+    return signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
+        const user = result.user;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   // logout function
   function logout() {
     const auth = getAuth();
-    Cookies.remove("biofidelicXQuizAuth");
-    return signOut(auth);
+    return signOut(auth)
+      .then(() => {
+        Cookies.remove("biofidelicXQuizAuth");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   const value = {

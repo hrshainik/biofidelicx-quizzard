@@ -28,10 +28,9 @@ const SignUp = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     try {
-      console.log(data);
-      const res = await signup(data.email, data.password, data.name);
+      const res = signup(data.email, data.password, data.name);
       toast.success("Successfully loged in", {
         position: "top-center",
         autoClose: 3000,
@@ -44,6 +43,7 @@ const SignUp = () => {
         transition: Slide,
       });
       router.push("/");
+      reset();
     } catch (err) {
       toast.error("Authentication failed", {
         position: "top-center",
@@ -59,9 +59,9 @@ const SignUp = () => {
       reset();
     }
   };
-  const signInWithGoogleHandler = async () => {
+  const signInWithGoogleHandler = () => {
     try {
-      const res = await loginWithGoogle();
+      const res = loginWithGoogle();
       toast.success("Successfully loged in", {
         position: "top-center",
         autoClose: 3000,
@@ -88,9 +88,9 @@ const SignUp = () => {
       });
     }
   };
-  const signInWithFBHandler = async () => {
+  const signInWithFBHandler = () => {
     try {
-      const res = await loginWithFacebook();
+      const res = loginWithFacebook();
       toast.success("Successfully loged in", {
         position: "top-center",
         autoClose: 3000,

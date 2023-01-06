@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { Slide, toast } from "react-toastify";
 import { useAuth } from "../contexts/AuthContext";
@@ -7,10 +8,11 @@ const Navbar = () => {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const { logout, currentUser } = useAuth();
+  const router = useRouter();
 
-  const logoutHandler = async () => {
+  const logoutHandler = () => {
     try {
-      const res = await logout();
+      const res = logout();
       toast.success("Successfully loged out", {
         position: "top-center",
         autoClose: 3000,
@@ -22,6 +24,7 @@ const Navbar = () => {
         theme: "light",
         transition: Slide,
       });
+      router.reload();
     } catch (error) {
       toast.error("Authentication failed", {
         position: "top-center",
