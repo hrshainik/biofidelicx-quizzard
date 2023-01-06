@@ -10,7 +10,7 @@ export async function getStaticProps() {
   };
 }
 
-const Category = ({ categoriesInfo }) => {
+const CategoryPage = ({ categoriesInfo }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ const Category = ({ categoriesInfo }) => {
   );
 };
 
-export default Category;
+export default CategoryPage;

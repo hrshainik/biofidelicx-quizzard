@@ -6,7 +6,7 @@ import { getQuizzes, getTotalQuizNumber } from "../../services";
 
 const limit = 5;
 
-const Home = ({
+const PaginatedHome = ({
   currentPageNumber,
   hasNextPage,
   hasPreviousPage,
@@ -45,20 +45,26 @@ const Home = ({
             <QuizCard key={quiz.id} {...quiz} />
           ))}
           <div className="pagination">
-            {hasPreviousPage ? (
+            {hasPreviousPage ? //   href={`${ // <Link
+            //     currentPageNumber === 2
+            //       ? "/"
+            //       : `/post-page/${currentPageNumber - 1}`
+            //   }`}
+            //   as={`${
+            //     currentPageNumber === 2
+            //       ? "/"
+            //       : `/post-page/${currentPageNumber - 1}`
+            //   }`}
+            // >
+            //   <a className="btn-outline cursor-pointer font-t text-xs font-bold tracking-sm">
+            //     &larr; Prev
+            //   </a>
+            // </Link>
+            null : (
               <Link
-                href={`${
-                  currentPageNumber === 2
-                    ? "/"
-                    : `/post-page/${currentPageNumber - 1}`
-                }`}
+                href={`/post-page/[page]`}
+                as={`/post-page/${currentPageNumber - 1}`}
               >
-                <a className="btn-outline cursor-pointer font-t text-xs font-bold tracking-sm">
-                  &larr; Prev
-                </a>
-              </Link>
-            ) : (
-              <Link href={`/post-page/${currentPageNumber - 1}`}>
                 <a
                   className="btn-outline cursor-not-allowed font-t text-xs font-bold tracking-sm opacity-50"
                   onClick={(e) => e.preventDefault()}
@@ -69,13 +75,19 @@ const Home = ({
             )}
 
             {hasNextPage ? (
-              <Link href={`/post-page/${currentPageNumber + 1}`}>
+              <Link
+                href={`/post-page/[page]`}
+                as={`/post-page/${currentPageNumber + 1}`}
+              >
                 <a className="btn-outline font-t text-xs font-bold tracking-sm">
                   Next &rarr;
                 </a>
               </Link>
             ) : (
-              <Link href={`/post-page/${currentPageNumber + 1}`}>
+              <Link
+                href={`/post-page/[page]`}
+                as={`/post-page/${currentPageNumber + 1}`}
+              >
                 <a
                   className="btn-outline cursor-not-allowed font-t text-xs font-bold tracking-sm opacity-50"
                   onClick={(e) => e.preventDefault()}
@@ -96,7 +108,7 @@ const Home = ({
   );
 };
 
-export default Home;
+export default PaginatedHome;
 
 export async function getStaticPaths() {
   const { aggregate } = await getTotalQuizNumber();

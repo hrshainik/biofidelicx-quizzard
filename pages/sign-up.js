@@ -144,10 +144,7 @@ const SignUp = () => {
                   })}
                   aria-invalid={errors.name ? "true" : "false"}
                 />
-                <span
-                  className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
-              mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left"
-                >
+                <span className="input__label py-[6px] cursor-text font-h absolute left-0 top-0 bg-white-500 px-3 my-[7px] mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left">
                   Name
                 </span>
                 <svg
@@ -185,10 +182,7 @@ const SignUp = () => {
                   })}
                   aria-invalid={errors.email ? "true" : "false"}
                 />
-                <span
-                  className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
-                mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left"
-                >
+                <span className="input__label py-[6px] cursor-text font-h absolute left-0 top-0 bg-white-500 px-3 my-[7px] mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left">
                   Email
                 </span>
                 <svg
@@ -228,10 +222,7 @@ const SignUp = () => {
                   })}
                   aria-invalid={errors.password ? "true" : "false"}
                 />
-                <span
-                  className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
-                mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left"
-                >
+                <span className="input__label py-[6px] cursor-text font-h absolute left-0 top-0 bg-white-500 px-3 my-[7px] mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left">
                   Password
                 </span>
                 <svg
@@ -281,10 +272,7 @@ const SignUp = () => {
                   })}
                   aria-invalid={errors.confirmPassword ? "true" : "false"}
                 />
-                <span
-                  className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
-              mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left"
-                >
+                <span className="input__label py-[6px] cursor-text font-h absolute left-0 top-0 bg-white-500 px-3 my-[7px] mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left">
                   Confirm Password
                 </span>
                 <svg
@@ -326,7 +314,7 @@ const SignUp = () => {
             <span>- Or Sign Up with -</span>
             <div className="flex gap-4 justify-center">
               <button onClick={signInWithGoogleHandler}>Google</button>
-              <button onClick={signInWithFBHandler}>Facebook</button>
+              {/* <button onClick={signInWithFBHandler}>Facebook</button> */}
             </div>
             <span>
               Already have an account? <Link href="/log-in">Log In now</Link>

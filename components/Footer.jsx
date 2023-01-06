@@ -1,13 +1,15 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <footer className="mt-8 w-full bg-midnight-500 pt-10">
       <div className="container mx-auto text-white-500">
         <ul className="mb-12 flex flex-col items-center justify-center gap-4 uppercase md:flex-row md:items-end lg:gap-12">
           <li className="pb-3">
-            <a href="#">About Us</a>
+            <Link href="/about">About Us</Link>
           </li>
           <li className="pb-3">
-            <a href="#">Quizzes</a>
+            <Link href="/">Quizzes</Link>
           </li>
           <li>
             <img
@@ -17,10 +19,10 @@ const Footer = () => {
             />
           </li>
           <li className="pb-3">
-            <a href="#">Contact</a>
+            <Link href="/contact">Contact</Link>
           </li>
           <li className="pb-3">
-            <a href="#">Team</a>
+            <Link href="/">Team</Link>
           </li>
         </ul>
         <ul className="mb-8 flex flex-wrap items-center justify-center gap-4 uppercase lg:gap-16">

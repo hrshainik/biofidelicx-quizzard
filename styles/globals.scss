@@ -352,6 +352,7 @@ h6 {
     &:focus,
     &:not(:placeholder-shown) {
       & + .input__label {
+        @apply py-0;
         transform: translate(0.25rem, -65%) scale(0.8);
         color: var(--color-accent);
       }

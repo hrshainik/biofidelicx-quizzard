@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Checkbox,
   Header,
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
   };
 }
 
-const Quiz = ({ quizInfo }) => {
+const QuizPage = ({ quizInfo }) => {
   const [quiz, setQuiz] = useState();
   const [questions, setQuestions] = useState();
   const [index, setIndex] = useState(0);
@@ -139,7 +139,7 @@ const Quiz = ({ quizInfo }) => {
     if (finished) {
       setResult((100 / quiz?.questions?.length) * correctAnswers?.size);
     }
-  }, [finished]);
+  }, [finished, correctAnswers?.size, quiz?.questions?.length]);
 
   return (
     <>
@@ -319,4 +319,4 @@ const Quiz = ({ quizInfo }) => {
   );
 };
 
-export default Quiz;
+export default QuizPage;

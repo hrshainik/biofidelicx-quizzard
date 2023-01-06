@@ -1,11 +1,6 @@
-/** @type {import('next').NextConfig} */
-const withPWA = require("next-pwa")({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
-});
-
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   reactStrictMode: true,
   async redirects() {
@@ -17,6 +12,13 @@ const nextConfig = {
       },
     ];
   },
+  // generateBuildId: async () => {
+  //   if (process.env.BUILD_ID) {
+  //     return process.env.BUILD_ID;
+  //   } else {
+  //     return `${new Date().getTime()}`;
+  //   }
+  // },
 };
 
-module.exports = withPWA(nextConfig);
+module.exports = nextConfig;

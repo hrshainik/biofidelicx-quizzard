@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Header, QuizCard, RecentQuizzes } from "../../../components";
 import { getCategories, getCategory } from "../../../services";
 
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
   };
 }
 
-const Category = ({ categoryInfo }) => {
+const SpecificCategoryPage = ({ categoryInfo }) => {
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
@@ -77,4 +77,4 @@ const Category = ({ categoryInfo }) => {
   );
 };
 
-export default Category;
+export default SpecificCategoryPage;

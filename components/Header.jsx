@@ -33,7 +33,7 @@ const Header = ({ title, imageUrl, slug, subText, color }) => {
         <div className="hero-l">
           <h1 className="main-title">{title}</h1>
           {subText && slug && color && (
-            <Link href={`/category/${slug}`}>
+            <Link href={`/category/[cSlug]`} as={`/category/${slug}`}>
               <div className="flex items-center gap-1">
                 <div
                   className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-52 xl:w-64 2xl:w-96"

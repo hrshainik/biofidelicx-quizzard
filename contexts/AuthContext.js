@@ -7,8 +7,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile,
 } from "firebase/auth";
+// import cookies from "js-cookie";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import "../services/firebase";
 
@@ -18,15 +18,41 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
+const formatUser = (user) => {
+  return {
+    uid: user.uid,
+    email: user.email,
+    name: user.displayName,
+    provider: user.providerData[0].providerId,
+    photoURL: user.photoURL,
+  };
+};
+
 export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState();
 
+  const handleUser = (rawUser) => {
+    if (rawUser) {
+      console.log(rawUser);
+      const user = formatUser(rawUser);
+      console.log(user);
+      setCurrentUser(user);
+      // cookies.set("biofidelicX-quiz-auth", true, { expires: 1 });
+      setLoading(false);
+      return user;
+    } else {
+      // cookies.remove("biofidelicX-quiz-auth");
+      setCurrentUser(false);
+      return false;
+    }
+  };
+
   useEffect(() => {
     const auth = getAuth();
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setLoading(false);
+      handleUser(user);
     });
 
     return unsubscribe;
@@ -35,42 +61,71 @@ export function AuthProvider({ children }) {
   // signup function
   async function signup(email, password, name) {
     const auth = getAuth();
-    await createUserWithEmailAndPassword(auth, email, password);
 
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      handleUser(res.user);
+    } catch (error) {
+      console.log(error);
+    }
     // update profile
-    await updateProfile(auth.currentUser, {
-      displayName: name,
-    });
+    // await updateProfile(auth.currentUser, {
+    //   displayName: name,
+    // });
 
-    const user = auth.currentUser;
-    setCurrentUser({
-      ...user,
-    });
+    // const user = auth.currentUser;
+    // setCurrentUser({
+    //   ...user,
+    // });
   }
 
   // login function
-  function login(email, password) {
+  async function login(email, password) {
     const auth = getAuth();
-    return signInWithEmailAndPassword(auth, email, password);
+
+    try {
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      handleUser(res.user);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // login with google function
-  function loginWithGoogle() {
+  async function loginWithGoogle() {
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
-    return signInWithPopup(auth, googleProvider);
+
+    try {
+      const res = await signInWithPopup(auth, googleProvider);
+      handleUser(res.user);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  function loginWithFacebook() {
+  async function loginWithFacebook() {
     const facebookProvider = new FacebookAuthProvider();
     const auth = getAuth();
-    return signInWithPopup(auth, facebookProvider);
+
+    try {
+      const res = await signInWithPopup(auth, facebookProvider);
+      handleUser(res.user);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // logout function
-  function logout() {
+  async function logout() {
     const auth = getAuth();
-    return signOut(auth);
+
+    try {
+      const res = await signOut(auth);
+      handleUser(false);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const value = {

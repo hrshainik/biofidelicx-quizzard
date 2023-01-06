@@ -136,10 +136,7 @@ const LogIn = () => {
                     },
                   })}
                 />
-                <span
-                  className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
-                mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left"
-                >
+                <span className="input__label py-[6px] cursor-text font-h absolute left-0 top-0 bg-white-500 px-3 my-[7px] mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left">
                   Email
                 </span>
                 <svg
@@ -172,10 +169,7 @@ const LogIn = () => {
                     required: "Password is required",
                   })}
                 />
-                <span
-                  className="input__label cursor-text font-h absolute left-0 top-0 bg-white-500 py-[6px] px-3 my-[7px]
-                mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left"
-                >
+                <span className="input__label py-[6px] cursor-text font-h absolute left-0 top-0 bg-white-500  px-3 my-[7px] mx-1 whitespace-nowrap translate-x-0 translate-y-0 origin-top-left">
                   Password
                 </span>
                 <svg
@@ -219,7 +213,7 @@ const LogIn = () => {
             <span>- Or Log In with -</span>
             <div className="flex gap-4 justify-center">
               <button onClick={signInWithGoogleHandler}>Google</button>
-              <button onClick={signInWithFBHandler}>Facebook</button>
+              {/* <button onClick={signInWithFBHandler}>Facebook</button> */}
             </div>
             <span>
               Already have an account? <Link href="/sign-up">Sign Up now</Link>

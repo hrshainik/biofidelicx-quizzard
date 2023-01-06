@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Categories, Header, QuizCard, RecentQuizzes } from "../components";
 import { getQuizzes } from "../services";
 
@@ -15,12 +15,12 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({
+const HomePage = ({
   // categoriesInfo,
   quizzesInfo,
   pageInfo,
   currentPageNumber,
-}) {
+}) => {
   // const [categories, setCategories] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
 
@@ -54,13 +54,19 @@ export default function Home({
           ))}
           <div className="pagination">
             {pageInfo.hasPreviousPage ? (
-              <Link href={`/quiz-page/${currentPageNumber - 1}`}>
+              <Link
+                href={`/quiz-page/[page]`}
+                as={`/quiz-page/${currentPageNumber - 1}`}
+              >
                 <a className="btn-outline cursor-pointer font-t text-xs font-bold tracking-sm">
                   &larr; Prev
                 </a>
               </Link>
             ) : (
-              <Link href={`/quiz-page/${currentPageNumber - 1}`}>
+              <Link
+                href={`/quiz-page/[page]`}
+                as={`/quiz-page/${currentPageNumber - 1}`}
+              >
                 <a
                   className="btn-outline cursor-not-allowed font-t text-xs font-bold tracking-sm opacity-50"
                   onClick={(e) => e.preventDefault()}
@@ -71,13 +77,19 @@ export default function Home({
             )}
 
             {pageInfo.hasNextPage ? (
-              <Link href={`/quiz-page/${currentPageNumber + 1}`}>
+              <Link
+                href={`/quiz-page/[page]`}
+                as={`/quiz-page/${currentPageNumber + 1}`}
+              >
                 <a className="btn-outline font-t text-xs font-bold tracking-sm">
                   Next &rarr;
                 </a>
               </Link>
             ) : (
-              <Link href={`/quiz-page/${currentPageNumber + 1}`}>
+              <Link
+                href={`/quiz-page/[page]`}
+                as={`/quiz-page/${currentPageNumber + 1}`}
+              >
                 <a
                   className="btn-outline cursor-not-allowed font-t text-xs font-bold tracking-sm opacity-50"
                   onClick={(e) => e.preventDefault()}
@@ -96,4 +108,6 @@ export default function Home({
       </div>
     </>
   );
-}
+};
+
+export default HomePage;
