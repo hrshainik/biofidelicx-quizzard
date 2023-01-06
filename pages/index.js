@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import Head from "next/head";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -28,6 +29,10 @@ const HomePage = ({
     // setCategories(categoriesInfo);
     setQuizzes(quizzesInfo);
   }, [quizzesInfo]);
+
+  const token = Cookies.get("biofidelicXQuizAuth");
+
+  console.log("Token", token);
 
   return (
     <>

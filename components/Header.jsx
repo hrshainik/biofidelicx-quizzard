@@ -14,10 +14,7 @@ const Header = ({ title, imageUrl, slug, subText, color }) => {
       rgba(0, 0, 0, .75), 
       rgba(0, 0, 0, .5)
     ),
-    url('${imageUrl}')`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPostion: "center",
+    url('${imageUrl}') no-repeat center`,
   };
 
   return (

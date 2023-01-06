@@ -45,22 +45,19 @@ const PaginatedHome = ({
             <QuizCard key={quiz.id} {...quiz} />
           ))}
           <div className="pagination">
-            {hasPreviousPage ? //   href={`${ // <Link
-            //     currentPageNumber === 2
-            //       ? "/"
-            //       : `/post-page/${currentPageNumber - 1}`
-            //   }`}
-            //   as={`${
-            //     currentPageNumber === 2
-            //       ? "/"
-            //       : `/post-page/${currentPageNumber - 1}`
-            //   }`}
-            // >
-            //   <a className="btn-outline cursor-pointer font-t text-xs font-bold tracking-sm">
-            //     &larr; Prev
-            //   </a>
-            // </Link>
-            null : (
+            {hasPreviousPage ? (
+              <Link
+                href={`${
+                  currentPageNumber === 2
+                    ? "/"
+                    : `/post-page/${currentPageNumber - 1}`
+                }`}
+              >
+                <a className="btn-outline cursor-pointer font-t text-xs font-bold tracking-sm">
+                  &larr; Prev
+                </a>
+              </Link>
+            ) : (
               <Link
                 href={`/post-page/[page]`}
                 as={`/post-page/${currentPageNumber - 1}`}
