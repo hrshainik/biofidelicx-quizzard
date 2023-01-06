@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 export default function middleware(request) {
   const token = request.cookies.has("biofidelicXQuizAuth");
   if (token) {
-    console.log(token);
+    // console.log(token);
     const url = request.nextUrl.clone();
-    console.log(url.pathname);
+    // console.log(url.pathname);
     if (url.pathname === "/log-in") {
       url.pathname = "/";
       return NextResponse.redirect(url);
@@ -17,8 +17,13 @@ export default function middleware(request) {
     }
   } else {
     const url = request.nextUrl.clone();
-    url.pathname = "/sign-up";
-    return NextResponse.redirect(url);
+    const regex = new RegExp(/\/[\S]{1,}\/[\S]{1,}\/[\S]{1,}\/[\S]{1,}/g);
+    const quizPagePath = regex.test(url.pathname);
+    if (quizPagePath) {
+      url.pathname = "/sign-up";
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.rewrite(request.nextUrl);
   }
 }
 
