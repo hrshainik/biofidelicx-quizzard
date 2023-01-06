@@ -45,7 +45,7 @@ const QuizPage = ({ quizInfo }) => {
   const [correctAnswerArr, setCorrectAnswerArr] = useState([]);
   const [correctQuestionArr, setCorrectQuestionArr] = useState([]);
   const [collectSelectedAns, setCollectSelectedAns] = useState([]);
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(0);
   const [finished, setFinished] = useState(false);
   const [opacity, setOpacity] = useState("opacity-100");
   const [quizTime, setQuizTime] = useState();
@@ -261,7 +261,7 @@ const QuizPage = ({ quizInfo }) => {
                     )}
                   </div>
                   <span className="text-3xl font-light font-t md:text-4xl lg:text-5xl">
-                    {result} / 100
+                    {result || 0} / 100
                   </span>
                   <p
                     className={`text-center text-2xl md:text-3xl mt-4 font-bold font-h tracking-sm ${

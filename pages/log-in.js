@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Slide, toast } from "react-toastify";
@@ -9,6 +10,7 @@ import { useAuth } from "../contexts/AuthContext";
 const LogIn = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const { login, loginWithGoogle, loginWithFacebook } = useAuth();
+  const router = useRouter();
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
@@ -33,6 +35,7 @@ const LogIn = () => {
         theme: "light",
         transition: Slide,
       });
+      router.push("/");
       reset();
     } catch (err) {
       toast.error("Authentication failed", {
@@ -63,6 +66,7 @@ const LogIn = () => {
         theme: "light",
         transition: Slide,
       });
+      router.push("/");
     } catch (err) {
       toast.error("Authentication failed", {
         position: "top-center",
@@ -91,6 +95,7 @@ const LogIn = () => {
         theme: "light",
         transition: Slide,
       });
+      router.push("/");
     } catch (err) {
       toast.error("Authentication failed", {
         position: "top-center",
