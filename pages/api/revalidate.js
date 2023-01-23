@@ -1,3 +1,5 @@
+import { getCategoryFormId } from "../../services";
+
 export default async function handler(req, res) {
   if (req.query.secret !== process.env.REVALIDATE_TOKEN) {
     return res.status(401).json({ message: "Invalid token" });
@@ -13,9 +15,7 @@ export default async function handler(req, res) {
     await res.revalidate("/");
     if (typename === "Quiz") {
       const id = req.body.data.category.id;
-      console.log(id);
       const cSlug = await getCategoryFormId(id);
-      console.log(cSlug);
       await res.revalidate(`/category/${cSlug}`);
       await res.revalidate(`/category/${cSlug}/quiz/${slug}`);
     } else if (typename === "Category") {
