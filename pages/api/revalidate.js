@@ -12,10 +12,12 @@ export default async function handler(req, res) {
     const slug = req.body.data.slug;
     await res.revalidate("/");
     if (typename === "Quiz") {
-      // const id = req.body.data.category.id;
-      // const cSlug = await getCategoryFormId(id);
-      // await res.revalidate(`/category/${cSlug}`);
-      // await res.revalidate(`/category/${cSlug}/quiz/${slug}`);
+      const id = req.body.data.category.id;
+      console.log(id);
+      const cSlug = await getCategoryFormId(id);
+      console.log(cSlug);
+      await res.revalidate(`/category/${cSlug}`);
+      await res.revalidate(`/category/${cSlug}/quiz/${slug}`);
     } else if (typename === "Category") {
       await res.revalidate("/category");
       await res.revalidate(`/category/${slug}`);
