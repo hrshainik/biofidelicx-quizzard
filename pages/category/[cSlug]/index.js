@@ -5,6 +5,13 @@ import { getCategories, getCategory } from "../../../services";
 
 export async function getStaticProps({ params }) {
   const categoryInfo = await getCategory(params.cSlug);
+
+  if (!categoryInfo) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       categoryInfo,
@@ -19,7 +26,7 @@ export async function getStaticPaths() {
   }));
   return {
     paths,
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -33,7 +40,7 @@ const SpecificCategoryPage = ({ categoryInfo }) => {
   return (
     <>
       <Head>
-        <title>{category.title} - biofidelicX quiz</title>
+        <title>{category?.title} - biofidelicX quiz</title>
         <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=7" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
@@ -52,7 +59,7 @@ const SpecificCategoryPage = ({ categoryInfo }) => {
         <meta property="og:image" content="dynamic text" />
       </Head>
       <Header
-        title={category.title}
+        title={category?.title}
         subText={`${category?.quizzes?.length} quiz`}
         imageUrl={category?.image?.url}
       />

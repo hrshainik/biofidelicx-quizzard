@@ -13,6 +13,12 @@ import { getCategories, getQuiz } from "../../../../services";
 export async function getStaticProps({ params }) {
   const quizInfo = await getQuiz(params.qSlug);
 
+  if (!quizInfo) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       quizInfo,
@@ -32,7 +38,7 @@ export async function getStaticPaths() {
         },
       };
     }),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -137,7 +143,9 @@ const QuizPage = ({ quizInfo }) => {
   // const result = ;
   useEffect(() => {
     if (finished) {
-      setResult((100 / quiz?.questions?.length) * correctAnswers?.size);
+      setResult(
+        Math.floor((100 / quiz?.questions?.length) * correctAnswers?.size)
+      );
     }
   }, [finished, correctAnswers?.size, quiz?.questions?.length]);
 

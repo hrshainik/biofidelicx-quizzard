@@ -133,7 +133,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
@@ -141,6 +141,12 @@ export async function getStaticProps({ params }) {
   const offset = Number((params.page - 1) * limit);
 
   const { edges: quizzesInfo, pageInfo } = await getQuizzes(limit, offset);
+
+  if (!quizzesInfo) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

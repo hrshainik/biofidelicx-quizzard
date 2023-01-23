@@ -21,8 +21,8 @@ const RecentQuizzes = () => {
               className="cursor-pointer flex justify-between items-center"
             >
               <div>
-                <span>{quiz.category.title}</span>
-                <h3 className="font-h">{quiz.title}</h3>
+                <span>{quiz?.category?.title}</span>
+                <h3 className="font-h">{quiz?.title}</h3>
                 <p>{quiz.questions.length} questions</p>
               </div>
               <div className="border-midnight-500 border-2">

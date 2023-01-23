@@ -4,12 +4,12 @@ const QuizCard = ({ title, description, time, slug, category, questions }) => {
   return (
     <Link
       href={`/category/[cSlug]/quiz/[qSlug]`}
-      as={`/category/${category.slug}/quiz/${slug}`}
+      as={`/category/${category?.slug}/quiz/${slug}`}
     >
       <div className="border border-midnight-500 p-3 flex flex-col gap-5 cursor-pointer">
         <div className="">
           <span className="text-xs tracking-md capitalize">
-            {category.title}
+            {category?.title}
           </span>
           <h3 className="text-xl font-h">{title}</h3>
         </div>

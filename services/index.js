@@ -178,3 +178,17 @@ export const getTotalQuizNumber = async () => {
 
   return result.quizzesConnection;
 };
+
+export const getCategoryFormId = async (id) => {
+  const query = gql`
+    query GetCategory($id: ID!) {
+      categories(where: { id: $id }) {
+        slug
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, { id }, requestHeaders);
+
+  return result.categories[0].slug;
+};
