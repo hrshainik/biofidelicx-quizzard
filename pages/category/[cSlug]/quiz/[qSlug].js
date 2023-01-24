@@ -170,7 +170,11 @@ const QuizPage = ({ quizInfo }) => {
         <meta property="og:description" content="dynamic text" />
         <meta property="og:image" content="dynamic text" />
       </Head>
-      <Header title={quiz?.title} subText={`${questions?.length} question`} />
+      <Header
+        title={quiz?.title}
+        subText={`${questions?.length} question`}
+        imageUrl={quiz?.image?.url}
+      />
       <div className="mx-auto px-2">
         <div className="pb-0 page-details">
           <div className="page-shadow"></div>

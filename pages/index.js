@@ -6,7 +6,7 @@ import { Categories, Header, QuizCard, RecentQuizzes } from "../components";
 import { getCategoryFormId, getQuizzes } from "../services";
 
 export async function getStaticProps() {
-  const limit = 5;
+  const limit = 10;
   const offset = 0;
 
   // const { edges: categoriesInfo } = await getCategories();
@@ -56,7 +56,7 @@ const HomePage = ({
       </Head>
       <Header title="Quiz App" imageUrl="/hero-img.jpg" />
       <Categories />
-      <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
+      <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12 items-start">
         <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
           {quizzes?.map(({ node: quiz }) => (
             <QuizCard key={quiz.id} {...quiz} />

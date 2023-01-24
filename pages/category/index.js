@@ -25,7 +25,7 @@ const CategoryPage = ({ categoriesInfo }) => {
       <Header title="Categories" subText={`${categories.length} category`} />
       <div className="page-details">
         <div className="page-shadow"></div>
-        <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12 -z-40">
+        <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12 items-start -z-40">
           <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
             {categories.map(({ node: category }) => (
               <CategoryCard key={category.id} {...category} />

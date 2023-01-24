@@ -14,6 +14,9 @@ export const getQuizzes = async (limit, offset) => {
             slug
             time
             title
+            image {
+              url
+            }
             description
             id
             category {
@@ -53,6 +56,9 @@ export const getQuiz = async (slug) => {
             time
             title
             description
+            image {
+              url
+            }
             id
             questions {
               id
@@ -127,6 +133,9 @@ export const getCategory = async (slug) => {
               title
               description
               slug
+              image {
+                url
+              }
               questions {
                 id
               }
@@ -145,9 +154,11 @@ export const getCategory = async (slug) => {
 export const getRecentQuizzes = async () => {
   const query = gql`
     query GetRecentQuizzes {
-      quizzes(orderBy: publishedAt_DESC, first: 5) {
+      quizzes(orderBy: publishedAt_DESC, first: 3) {
         slug
         title
+        description
+        time
         id
         category {
           title

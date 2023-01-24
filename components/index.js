@@ -1,6 +1,7 @@
 export { default as Answer } from "./Answer";
 export { default as Categories } from "./Categories";
 export { default as CategoryCard } from "./CategoryCard";
+export { default as CategoryCardSkeleton } from "./CategoryCardSkeleton";
 export { default as Checkbox } from "./Checkbox";
 export { default as Footer } from "./Footer";
 export { default as Header } from "./Header";

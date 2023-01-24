@@ -1,20 +1,18 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { getCategories } from "../services";
 
 const Header = ({ title, imageUrl, slug, subText, color }) => {
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    getCategories().then((data) => setCategories(data));
-  }, []);
+  // useEffect(() => {
+  //   getCategories().then((data) => setCategories(data));
+  // }, []);
 
   const bgImage = {
     background: `linear-gradient(
       rgba(0, 0, 0, .75), 
       rgba(0, 0, 0, .5)
     ),
-    url('${imageUrl}') no-repeat center`,
+    url('${imageUrl}') center center / cover no-repeat`,
   };
 
   return (

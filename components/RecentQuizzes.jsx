@@ -18,19 +18,27 @@ const RecentQuizzes = () => {
           {recentQuizzes.map((quiz) => (
             <div
               key={quiz.id}
-              className="cursor-pointer flex justify-between items-center"
+              className="cursor-pointer gap-3 flex justify-between items-center border-b last:border-none pb-3 last:pb-0"
             >
               <div>
-                <span>{quiz?.category?.title}</span>
+                {/* <span>{quiz?.category?.title}</span> */}
                 <h3 className="font-h">{quiz?.title}</h3>
-                <p>{quiz.questions.length} questions</p>
+                <p className="">
+                  {quiz?.description.substr(0, 60)}
+                  {quiz?.description?.length > 60 && "..."}
+                </p>
+                <span className="mr-2 text-sm">
+                  {quiz.questions.length} questions
+                </span>
+                <span className="text-sm">{quiz.time} minutes</span>
               </div>
-              <div className="border-midnight-500 border-2">
+              <div className="w-8 h-8	grow-0 basis-8 shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   width="24"
                   height="24"
+                  className="w-full h-full"
                 >
                   <path fill="none" d="M0 0h24v24H0z" />
                   <path
