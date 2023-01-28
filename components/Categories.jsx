@@ -32,8 +32,17 @@ const Categories = () => {
           </p>
           <Swiper
             spaceBetween={30}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination, Autoplay]}
             slidesPerView={1.5}
             centeredSlides={true}
+            loop
             breakpoints={{
               400: {
                 slidesPerView: 1,

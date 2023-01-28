@@ -39,8 +39,8 @@ const PaginatedHome = ({
       </Head>
       <Header title="Quiz App" imageUrl="/hero-img.jpg" />
       <Categories />
-      <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12 items-start">
-        <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
+      <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
+        <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8 content-start">
           {quizzes?.map(({ node: quiz }) => (
             <QuizCard key={quiz.id} {...quiz} />
           ))}

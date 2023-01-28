@@ -56,8 +56,8 @@ const HomePage = ({
       </Head>
       <Header title="Quiz App" imageUrl="/hero-img.jpg" />
       <Categories />
-      <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12 items-start">
-        <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
+      <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
+        <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8 content-start">
           {quizzes?.map(({ node: quiz }) => (
             <QuizCard key={quiz.id} {...quiz} />
           ))}
@@ -109,7 +109,7 @@ const HomePage = ({
             )}
           </div>
         </div>
-        <div className="col-span-1 lg:col-span-4">
+        <div className="col-span-1 flex flex-col gap-6 lg:col-span-4">
           <div className="relative lg:sticky lg:top-20">
             <RecentQuizzes />
           </div>

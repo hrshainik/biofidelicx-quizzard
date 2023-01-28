@@ -66,8 +66,8 @@ const SpecificCategoryPage = ({ categoryInfo }) => {
       <div className="mx-auto mb-8 px-2">
         <div className="page-details">
           <div className="page-shadow"></div>
-          <div className="z-50 container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12 items-start">
-            <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8">
+          <div className="z-50 container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
+            <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8 content-start">
               {category?.quizzes?.map((quiz) => (
                 <QuizCard key={quiz.id} {...quiz} category={category} />
               ))}
