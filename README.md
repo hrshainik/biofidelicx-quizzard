@@ -1,16 +1,16 @@
 <!-- PROJECT LOGO -->
 <div align="center">
-  <h1 align="center">biofidelicX Quiz</h1>
+  <h1 align="center">biofidelicX quizzard</h1>
 
   <p align="center">
-    Here you find all kind of bio-science related quiz.
+    biofidelicX quizzard is the ideal place to start if you're studying for an exam, trying to increase your knowledge of bio-science, or just seeking for a fun and engaging method to learn.
     <br />
     <br />
-    <a href="https://biofidelicx-quiz.vercel.app/">View Demo</a>
+    <a href="https://biofidelicx-quizzard.vercel.app/">View Demo</a>
     ·
-    <a href="https://github.com/hrshainik/biofidelicx-quiz/issues">Report Bug</a>
+    <a href="https://github.com/hrshainik/biofidelicx-quizzard/issues">Report Bug</a>
     ·
-    <a href="https://github.com/hrshainik/biofidelicx-quiz/issues">Request Feature</a>
+    <a href="https://github.com/hrshainik/biofidelicx-quizzard/issues">Request Feature</a>
   </p>
 </div>
 
@@ -33,9 +33,9 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://biofidelicx-quiz.vercel.app/)
+[![Product Name Screen Shot][product-screenshot]](https://biofidelicx-quizzard.vercel.app/)
 
-Here you find all kind of bio-science related quiz.
+biofidelicX quizzard is the ideal place to start if you're studying for an exam, trying to increase your knowledge of bio-science, or just seeking for a fun and engaging method to learn.
 
 <p align="right"><a href="#top">⇧Back To Top</a></p>
 
@@ -45,6 +45,7 @@ Here you find all kind of bio-science related quiz.
 - [React](https://reactjs.org/)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [GraphQL](https://graphql.org/)
 - [Sass](https://sass-lang.com/)
 - [Firebase](https://firebase.google.com/)
 
@@ -73,7 +74,7 @@ Don't forget to give the project a star! Thanks again!
 
 Habibur Rahman - [@portfoilo](https://hrshainik.me) - hrsshainik@gmail.com
 
-Project Link: [https://github.com/hrshainik/biofidelicx-quiz](https://github.com/hrshainik/biofidelicx-quiz)
+Project Link: [https://github.com/hrshainik/biofidelicx-quizzard](https://github.com/hrshainik/biofidelicx-quizzard)
 
 <p align="right"><a href="#top">⇧Back To Top</a></p>
 
