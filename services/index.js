@@ -84,7 +84,7 @@ export const getQuiz = async (slug) => {
 
 export const getCategories = async () => {
   const query = gql`
-    query GetCategories() {
+    query GetCategories {
       categoriesConnection {
         edges {
           node {
@@ -114,7 +114,7 @@ export const getCategories = async () => {
 
 export const getCategory = async (slug) => {
   const query = gql`
-    query GetCategories($slug: String!) {
+    query GetCategory($slug: String!) {
       categoriesConnection(where: { slug: $slug }) {
         edges {
           node {
