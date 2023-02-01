@@ -31,18 +31,6 @@ const SignUp = () => {
   const onSubmit = (data) => {
     try {
       const res = signup(data.email, data.password, data.name);
-      toast.success("Successfully loged in", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Slide,
-      });
-      router.push("/");
       reset();
     } catch (err) {
       toast.error("Authentication failed", {
@@ -62,18 +50,6 @@ const SignUp = () => {
   const signInWithGoogleHandler = () => {
     try {
       const res = loginWithGoogle();
-      toast.success("Successfully loged in", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Slide,
-      });
-      router.push("/");
     } catch (err) {
       toast.error("Authentication failed", {
         position: "top-center",
@@ -91,18 +67,6 @@ const SignUp = () => {
   const signInWithFBHandler = () => {
     try {
       const res = loginWithFacebook();
-      toast.success("Successfully loged in", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Slide,
-      });
-      router.push("/");
     } catch (err) {
       toast.error("Authentication failed", {
         position: "top-center",

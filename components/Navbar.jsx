@@ -13,18 +13,6 @@ const Navbar = () => {
   const logoutHandler = () => {
     try {
       const res = logout();
-      toast.success("Successfully loged out", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Slide,
-      });
-      router.reload();
     } catch (error) {
       toast.error("Authentication failed", {
         position: "top-center",

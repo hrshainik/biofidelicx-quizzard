@@ -10,7 +10,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { Slide, toast } from "react-toastify";
 import "../services/firebase";
 
 const AuthContext = createContext();
@@ -22,6 +24,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState();
+  const router = useRouter();
 
   useEffect(() => {
     const auth = getAuth();
@@ -40,9 +43,32 @@ export function AuthProvider({ children }) {
       .then((result) => {
         Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
         const user = result.user;
+        toast.success("Successfully loged in", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+        router.push("/");
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Authentication failed", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
       });
 
     // update profile
@@ -63,9 +89,32 @@ export function AuthProvider({ children }) {
       .then((result) => {
         Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
         const user = result.user;
+        toast.success("Successfully loged in", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+        router.push("/");
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Authentication failed", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
       });
   }
 
@@ -77,9 +126,32 @@ export function AuthProvider({ children }) {
       .then((result) => {
         Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
         const user = result.user;
+        toast.success("Successfully loged in", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+        router.push("/");
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Authentication failed", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
       });
   }
 
@@ -91,9 +163,32 @@ export function AuthProvider({ children }) {
       .then((result) => {
         Cookies.set("biofidelicXQuizAuth", true, { expires: 1 });
         const user = result.user;
+        toast.success("Successfully loged in", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+        router.push("/");
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Authentication failed", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
       });
   }
 
@@ -103,9 +198,32 @@ export function AuthProvider({ children }) {
     return signOut(auth)
       .then(() => {
         Cookies.remove("biofidelicXQuizAuth");
+        router.reload();
+        toast.success("Successfully loged out", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Authentication failed", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
       });
   }
 

@@ -20,7 +20,7 @@ const CategoryPage = ({ categoriesInfo }) => {
   return (
     <>
       <Head>
-        <title>Catetories - biofidelicX quiz</title>
+        <title>Catetories - biofidelicX quizzard</title>
       </Head>
       <Header title="Categories" subText={`${categories.length} category`} />
       <div className="page-details">

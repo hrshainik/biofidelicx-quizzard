@@ -37,7 +37,7 @@ const HomePage = ({
   return (
     <>
       <Head>
-        <title>biofidelicX quiz</title>
+        <title>biofidelicX quizzard</title>
         <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=7" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
@@ -47,7 +47,10 @@ const HomePage = ({
           name="description"
           content="Here you find bio-science related quizzes."
         />
-        <meta name="keywords" content="biofidelicx quiz, biofidelicx academy" />
+        <meta
+          name="keywords"
+          content="biofidelicx quizzard, biofidelicx academy"
+        />
         <meta name="author" content="Habibur Rahman" />
       </Head>
       <Header title="Quiz App" imageUrl="/hero-img.jpg" />

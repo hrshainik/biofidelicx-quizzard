@@ -159,7 +159,10 @@ const QuizPage = ({ quizInfo }) => {
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="dynamic text" />
-        <meta name="keywords" content="biofidelicX quiz, biofidelicX academy" />
+        <meta
+          name="keywords"
+          content="biofidelicX quizzard, biofidelicX academy"
+        />
         <meta name="author" content="dynamic text" />
         <meta
           property="og:url"
