@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Categories, Header, QuizCard, RecentQuizzes } from "../components";
-import { getCategoryFormId, getQuizzes } from "../services";
+import { getQuizzes } from "../services";
 
 export async function getStaticProps() {
   const limit = 10;
@@ -11,9 +11,9 @@ export async function getStaticProps() {
 
   // const { edges: categoriesInfo } = await getCategories();
   const { edges: quizzesInfo, pageInfo } = await getQuizzes(limit, offset);
-  const data = await getCategoryFormId("cld94fr032uja0apgevt3t6gq");
+  // const data = await getCategoryFormId("cld94fr032uja0apgevt3t6gq");
   return {
-    props: { quizzesInfo, currentPageNumber: 1, pageInfo, data },
+    props: { quizzesInfo, currentPageNumber: 1, pageInfo },
   };
 }
 
@@ -33,10 +33,6 @@ const HomePage = ({
   }, [quizzesInfo]);
 
   const token = Cookies.get("biofidelicXQuizAuth");
-
-  console.log("Token", token);
-  console.log(currentPageNumber);
-  console.log(data);
 
   return (
     <>

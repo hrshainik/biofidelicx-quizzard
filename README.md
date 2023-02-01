@@ -11,7 +11,7 @@
     <a href="https://github.com/hrshainik/biofidelicx-quizzard/issues">Report Bug</a>
     ·
     <a href="https://github.com/hrshainik/biofidelicx-quizzard/issues">Request Feature</a>
-  </p>
+  </p>j
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -46,6 +46,7 @@ biofidelicX quizzard is the ideal place to start if you're studying for an exam,
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [GraphQL](https://graphql.org/)
+- [hygraph CMS](https://hygraph.com/)
 - [Sass](https://sass-lang.com/)
 - [Firebase](https://firebase.google.com/)
 
