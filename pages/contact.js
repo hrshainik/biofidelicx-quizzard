@@ -1,9 +1,17 @@
+import { sendForm } from "emailjs-com";
 import Head from "next/head";
-import React from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { Slide, toast } from "react-toastify";
 import { Header } from "../components";
 
+const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+const USER_ID = process.env.NEXT_PUBLIC_USER_ID;
+
 const Contact = () => {
+  const form = useRef();
+
   const {
     register,
     handleSubmit,
@@ -11,14 +19,41 @@ const Contact = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = async (data) => {
-    console.log(data);
+  const onSubmit = (data) => {
+    sendForm(SERVICE_ID, TEMPLATE_ID, form.current, USER_ID).then(
+      (result) => {
+        toast.success("Message Sent", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+      },
+      (error) => {
+        toast.error("Some problem occured", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Slide,
+        });
+      }
+    );
     reset();
   };
   return (
     <>
       <Head>
-        <title>Contact - biofidelicX</title>
+        <title>Contact - biofidelicX quizzard</title>
       </Head>
       <Header title="We'd love to hear from you" />
       <div className="mx-auto mb-8 px-2 md:px-5">
@@ -28,6 +63,7 @@ const Contact = () => {
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
+            ref={form}
           >
             <div>
               <label className="input relative">
