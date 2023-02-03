@@ -118,7 +118,10 @@ const QuizPage = ({ quizInfo }) => {
   }, []);
 
   const checkOption = (e, option, question) => {
-    setCollectSelectedAns((ans) => ans.concat(e.target.value));
+    setCollectSelectedAns((prevSelectedValues) => [
+      ...prevSelectedValues,
+      e.target.value,
+    ]);
     if (option.isCorrect) {
       setCorrectAnswerArr([...correctAnswerArr, `${option.id}`]);
     }
@@ -158,7 +161,7 @@ const QuizPage = ({ quizInfo }) => {
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="dynamic text" />
+        <meta name="description" content={quiz?.description} />
         <meta
           name="keywords"
           content="biofidelicX quizzard, biofidelicX academy"
@@ -166,7 +169,7 @@ const QuizPage = ({ quizInfo }) => {
         <meta name="author" content="dynamic text" />
         <meta
           property="og:url"
-          content={`https://biofidelicx-quiz.vercel.app/post/dynamic-text`}
+          content={`https://biofidelicx-quizzard.vercel.app/post/dynamic-text`}
         />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="dynamic text" />
