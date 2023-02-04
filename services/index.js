@@ -121,6 +121,9 @@ export const getCategory = async (slug) => {
             description
             slug
             title
+            categoryColor {
+              hex
+            }
             image {
               url
             }
@@ -158,7 +161,11 @@ export const getRecentQuizzes = async () => {
         slug
         title
         description
+        createdAt
         time
+        image {
+          url
+        }
         id
         category {
           title

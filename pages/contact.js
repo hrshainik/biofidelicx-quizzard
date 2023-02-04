@@ -57,7 +57,7 @@ const Contact = () => {
       </Head>
       <Header title="We'd love to hear from you" imageUrl="/hero-img.jpg" />
       <div className="mx-auto mb-8 px-2 md:px-5">
-        <div className="page-details">
+        <div className="page-details !max-w-screen-lg">
           <div className="page-shadow"></div>
           <h2 className="title">Get In Touch</h2>
           <form
@@ -144,6 +144,7 @@ const Contact = () => {
             <label className="input relative">
               <textarea
                 name="comment"
+                rows="4"
                 className="input__field block w-full rounded-none border border-midnight-500 bg-transparent py-3 px-3 font-t focus:outline-0"
                 placeholder=" "
                 {...register("message", { required: "Message is required" })}
@@ -162,8 +163,12 @@ const Contact = () => {
                 <path d="M6.455 19L2 22.5V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6.455zm-.692-2H20V5H4v13.385L5.763 17zM11 10h2v2h-2v-2zm-4 0h2v2H7v-2zm8 0h2v2h-2v-2z" />
               </svg>
             </label>
-            <button className="btn-outline">
-              <input type="submit" value="Submit" className="cursor-pointer" />
+            <button className="btn-outline self-end mt-2">
+              <input
+                type="submit"
+                value="Submit"
+                className="cursor-pointer uppercase font-bold"
+              />
             </button>
           </form>
         </div>

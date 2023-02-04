@@ -65,9 +65,13 @@ const SpecificCategoryPage = ({ categoryInfo }) => {
         title={category?.title}
         subText={`${category?.quizzes?.length} quiz`}
         imageUrl={category?.image?.url}
+        color={category?.categoryColor?.hex}
       />
       <div className="mx-auto mb-8 px-2">
-        <div className="page-details">
+        <div
+          className="page-details"
+          style={{ borderTop: `3px solid ${category?.categoryColor?.hex}` }}
+        >
           <div className="page-shadow"></div>
           <div className="z-50 container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12">
             <div className="col-span-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-8 content-start">

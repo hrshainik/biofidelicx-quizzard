@@ -31,7 +31,7 @@ const Header = ({ title, imageUrl, slug, subText, color }) => {
             <Link href={`/category/[cSlug]`} as={`/category/${slug}`}>
               <div className="flex items-center gap-1">
                 <div
-                  className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-52 xl:w-64 2xl:w-96"
+                  className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-36"
                   style={{ backgroundColor: `${color}` }}
                 ></div>
                 <span
@@ -43,7 +43,7 @@ const Header = ({ title, imageUrl, slug, subText, color }) => {
                   {subText}
                 </span>
                 <div
-                  className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-52 xl:w-64 2xl:w-96"
+                  className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-36"
                   style={{ backgroundColor: `${color}` }}
                 ></div>
               </div>
@@ -53,7 +53,7 @@ const Header = ({ title, imageUrl, slug, subText, color }) => {
           {subText && color && !slug && (
             <div className="flex items-center gap-1">
               <div
-                className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-52 xl:w-64 2xl:w-96"
+                className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-36"
                 style={{ backgroundColor: `${color}` }}
               ></div>
               <span
@@ -65,7 +65,7 @@ const Header = ({ title, imageUrl, slug, subText, color }) => {
                 {subText}
               </span>
               <div
-                className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-52 xl:w-64 2xl:w-96"
+                className="h-px w-12 bg-aquamarine-500 sm:w-20 md:w-32 lg:w-36"
                 style={{ backgroundColor: `${color}` }}
               ></div>
             </div>

@@ -9,7 +9,7 @@ const Footer = () => {
             <Link href="/about">About Us</Link>
           </li>
           <li className="pb-3">
-            <Link href="/">Quizzes</Link>
+            <Link href="https://biofidelicx-diary.vercel.app">Blog</Link>
           </li>
           <li>
             <img
@@ -22,7 +22,7 @@ const Footer = () => {
             <Link href="/contact">Contact</Link>
           </li>
           <li className="pb-3">
-            <Link href="/">Team</Link>
+            <Link href="/category">Category</Link>
           </li>
         </ul>
         <ul className="mb-8 flex flex-wrap items-center justify-center gap-4 uppercase lg:gap-16">
