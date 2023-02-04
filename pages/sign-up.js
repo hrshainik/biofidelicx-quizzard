@@ -87,7 +87,7 @@ const SignUp = () => {
       <Head>
         <title>Sign up - biofidelicX</title>
       </Head>
-      <Header title="Hi There, Welcome" />
+      <Header title="Hi There, Welcome" imageUrl="/hero-img.jpg" />
       <div className="mx-auto mb-8 px-2 md:px-5">
         <div className="page-details">
           <div className="page-shadow"></div>

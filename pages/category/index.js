@@ -22,7 +22,11 @@ const CategoryPage = ({ categoriesInfo }) => {
       <Head>
         <title>Catetories - biofidelicX quizzard</title>
       </Head>
-      <Header title="Categories" subText={`${categories.length} category`} />
+      <Header
+        title="Categories"
+        subText={`${categories.length} category`}
+        imageUrl="/hero-img.jpg"
+      />
       <div className="page-details">
         <div className="page-shadow"></div>
         <div className="container mx-auto grid grid-cols-1 gap-12 p-5 sm:p-0 lg:grid-cols-12 -z-40">

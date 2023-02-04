@@ -79,7 +79,7 @@ const LogIn = () => {
       <Head>
         <title>Log in - biofidelicX</title>
       </Head>
-      <Header title="Welcome Back" />
+      <Header title="Welcome Back" imageUrl="/hero-img.jpg" />
       <div className="mx-auto mb-8 px-2 md:px-5">
         <div className="page-details">
           <div className="page-shadow"></div>

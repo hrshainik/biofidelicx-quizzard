@@ -9,7 +9,7 @@ const NotFound = () => {
       <Head>
         <title>Not Found - biofidelicX</title>
       </Head>
-      <Header title="Ooops! Page Not Found." />
+      <Header title="Ooops! Page Not Found." imageUrl="/hero-img.jpg" />
       <div className="mx-auto mb-8 px-2 md:px-5">
         <div className="page-details flex flex-col items-center">
           <div className="page-shadow"></div>
