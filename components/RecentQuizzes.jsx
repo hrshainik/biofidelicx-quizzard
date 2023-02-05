@@ -15,7 +15,7 @@ const RecentQuizzes = () => {
         setDataLoaded(true);
       }, 1500);
     }
-  }, [recentQuizzes]);
+  }, []);
 
   if (!dataLoaded) {
     return (

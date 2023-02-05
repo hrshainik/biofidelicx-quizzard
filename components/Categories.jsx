@@ -21,7 +21,7 @@ const Categories = () => {
         setDataLoaded(true);
       }, 1500);
     }
-  }, [categories]);
+  }, []);
 
   if (!dataLoaded) {
     return (
