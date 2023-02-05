@@ -1,5 +1,6 @@
 import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getRecentQuizzes } from "../services";
 
@@ -86,6 +87,7 @@ const RecentQuizzes = () => {
     );
   }
 
+  console.log(recentQuizzes);
   return (
     <fieldset className="border border-midnight-100">
       <legend className="mx-auto px-3 font-h text-3xl font-bold">
@@ -93,29 +95,31 @@ const RecentQuizzes = () => {
       </legend>
       <div className="p-5 pt-4 lg:p-8 flex flex-col gap-3">
         {recentQuizzes.map((quiz) => (
-          <div
+          <Link
+            href={`/category/${quiz.category.slug}/quiz/${quiz.slug}`}
             key={quiz.id}
-            className="mb-4 flex w-full cursor-pointer items-center last:mb-0"
           >
-            <div className="relative h-16 w-16 flex-none">
-              <Image
-                layout="fill"
-                src={quiz.image.url}
-                className="object-cover align-middle"
-                alt={quiz.title}
-              />
+            <div className="mb-4 flex w-full cursor-pointer items-center last:mb-0">
+              <div className="relative h-16 w-16 flex-none">
+                <Image
+                  layout="fill"
+                  src={quiz.image.url}
+                  className="object-cover align-middle"
+                  alt={quiz.title}
+                />
+              </div>
+              <div className="ml-2 flex-grow sm:ml-4">
+                <span className="text-xs">
+                  {moment(quiz.createdAt).format("MMM DD, YYYY")}
+                </span>
+                <h3 className="font-h text-base">{quiz?.title}</h3>
+                <span className="mr-2 text-xs">
+                  {quiz.questions.length} questions
+                </span>
+                <span className="text-xs">{quiz.time} minutes</span>
+              </div>
             </div>
-            <div className="ml-2 flex-grow sm:ml-4">
-              <span className="text-xs">
-                {moment(quiz.createdAt).format("MMM DD, YYYY")}
-              </span>
-              <h3 className="font-h text-base">{quiz?.title}</h3>
-              <span className="mr-2 text-xs">
-                {quiz.questions.length} questions
-              </span>
-              <span className="text-xs">{quiz.time} minutes</span>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </fieldset>

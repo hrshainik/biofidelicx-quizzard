@@ -71,6 +71,11 @@ export const getQuiz = async (slug) => {
               }
               questionText
             }
+            category {
+              categoryColor {
+                hex
+              }
+            }
           }
         }
       }
@@ -169,6 +174,7 @@ export const getRecentQuizzes = async () => {
         id
         category {
           title
+          slug
         }
         questions {
           id

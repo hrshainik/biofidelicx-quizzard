@@ -143,7 +143,6 @@ const QuizPage = ({ quizInfo }) => {
     setCorrectAnswerArr([...correctAnswerArr, option.id]);
   };
 
-  // const result = ;
   useEffect(() => {
     if (finished) {
       setResult(
@@ -180,9 +179,15 @@ const QuizPage = ({ quizInfo }) => {
         title={quiz?.title}
         subText={`${questions?.length} question`}
         imageUrl={quiz?.image?.url}
+        color={quiz?.category?.categoryColor?.hex}
       />
       <div className="mx-auto px-2">
-        <div className="pb-0 page-details">
+        <div
+          className="pb-0 page-details"
+          style={{
+            borderTop: `3px solid ${quiz?.category?.categoryColor?.hex}`,
+          }}
+        >
           <div className="page-shadow"></div>
           <div className="z-50 bg-white-500">
             {!finished ? (
