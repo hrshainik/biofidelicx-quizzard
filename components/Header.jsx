@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const Header = ({ title, imageUrl, slug, subText, color }) => {
@@ -11,11 +12,24 @@ const Header = ({ title, imageUrl, slug, subText, color }) => {
 
   return (
     <>
-      <main className="hero" style={bgImage}>
-        <div className="mx-auto mb-8">
-          <div className="flex items-center justify-center py-3">
+      <main className="hero bg-gradient-to-b from-midnight-500 to-transparent">
+        <Image
+          className="-z-10"
+          src={imageUrl}
+          alt="hero"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+        />
+        <div className="mx-auto relative top-3">
+          <div className="flex relative cursor-pointer items-center justify-center h-12 md:h-16 lg:h-20">
             <Link href="/">
-              <img src="/logo.svg" alt="logo" className="logo" />
+              <Image
+                src="/logo.svg"
+                layout="fill"
+                alt="logo"
+                className="z-10 cursor-pointer"
+              />
             </Link>
           </div>
         </div>

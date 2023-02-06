@@ -9,6 +9,9 @@ const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
   const { logout, currentUser } = useAuth();
   const router = useRouter();
+  const currentRoute = router.pathname;
+
+  console.log(currentUser);
 
   const logoutHandler = () => {
     try {
@@ -146,59 +149,74 @@ const Navbar = () => {
           </svg>
         </div>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
-          <li className="nav-item">
-            <Link href="/">
-              <a className="nav-links" onClick={closeMobileMenu}>
-                Home
-              </a>
-            </Link>
-          </li>
-          <li
-            className="nav-item"
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            <Link href="https://biofidelicx-diary.vercel.app">
-              <a className="nav-links" onClick={closeMobileMenu}>
-                Blog
-              </a>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href="/about">
-              <a className="nav-links" onClick={closeMobileMenu}>
-                About
-              </a>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href="/contact">
-              <a className="nav-links" onClick={closeMobileMenu}>
-                Contact
-              </a>
-            </Link>
-          </li>
-          {!currentUser ? (
-            <li className="nav-item">
-              <Link href="/sign-up">
-                <a className="nav-links" onClick={closeMobileMenu}>
-                  Sign Up
-                </a>
-              </Link>
-            </li>
-          ) : (
-            <li className="nav-item">
-              <a
-                className="nav-links"
-                onClick={() => {
-                  logoutHandler();
-                  closeMobileMenu();
-                }}
+          <Link href="/">
+            <a onClick={closeMobileMenu}>
+              <li
+                className={`nav-item ${
+                  currentRoute === "/" ? "nav-active" : null
+                }`}
               >
+                Home
+              </li>
+            </a>
+          </Link>
+          <Link href="https://biofidelicx-diary.vercel.app">
+            <a onClick={closeMobileMenu}>
+              <li
+                className="nav-item"
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+              >
+                Blog
+              </li>
+            </a>
+          </Link>
+          <Link href="/about">
+            <a onClick={closeMobileMenu}>
+              <li
+                className={`nav-item ${
+                  currentRoute === "/about" ? "nav-active" : null
+                }`}
+              >
+                About
+              </li>
+            </a>
+          </Link>
+          <Link href="/contact">
+            <a onClick={closeMobileMenu}>
+              <li
+                className={`nav-item ${
+                  currentRoute === "/contact" ? "nav-active" : null
+                }`}
+              >
+                Contact
+              </li>
+            </a>
+          </Link>
+          {!currentUser ? (
+            <Link href="/sign-up">
+              <a onClick={closeMobileMenu}>
+                <li
+                  className={`nav-item ${
+                    currentRoute === "/sign-up" ? "nav-active" : null
+                  }`}
+                >
+                  Sign Up
+                </li>
+              </a>
+            </Link>
+          ) : (
+            <a
+              onClick={() => {
+                logoutHandler();
+                closeMobileMenu();
+              }}
+            >
+              <li className="nav-item">
                 {/* {currentUser.displayName} */}
                 Logout
-              </a>
-            </li>
+              </li>
+            </a>
           )}
         </ul>
         <div className="share-link">

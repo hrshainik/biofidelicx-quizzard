@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
@@ -11,12 +12,8 @@ const Footer = () => {
           <li className="pb-3">
             <Link href="https://biofidelicx-diary.vercel.app">Blog</Link>
           </li>
-          <li>
-            <img
-              src="/logo.svg"
-              alt="logo"
-              className="w-36 cursor-pointer sm:w-40 md:w-52 lg:w-60"
-            />
+          <li className="relative w-36 h-11 md:h-20 cursor-pointer sm:w-40 md:w-52 lg:w-60">
+            <Image src="/logo.svg" alt="logo" layout="fill" />
           </li>
           <li className="pb-3">
             <Link href="/contact">Contact</Link>

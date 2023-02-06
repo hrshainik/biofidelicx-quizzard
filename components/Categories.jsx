@@ -25,7 +25,7 @@ const Categories = () => {
 
   if (!dataLoaded) {
     return (
-      <div className="w-full">
+      <div className="w-full relative z-10">
         <div className="container mx-auto mb-8" style={{ marginTop: "-6rem" }}>
           <p className="text-center font-h text-xl font-bold leading-loose text-white-500 md:text-left">
             Categories
@@ -44,9 +44,6 @@ const Categories = () => {
             centeredSlides={true}
             loop
             breakpoints={{
-              400: {
-                slidesPerView: 1,
-              },
               600: {
                 slidesPerView: 2,
                 centeredSlides: false,
@@ -95,7 +92,7 @@ const Categories = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full relative z-10">
       <div className="container mx-auto mb-8" style={{ marginTop: "-6rem" }}>
         <p className="text-center font-h text-xl font-bold leading-loose text-white-500 md:text-left">
           Categories
@@ -114,9 +111,6 @@ const Categories = () => {
           centeredSlides={true}
           loop
           breakpoints={{
-            400: {
-              slidesPerView: 1,
-            },
             600: {
               slidesPerView: 2,
               centeredSlides: false,

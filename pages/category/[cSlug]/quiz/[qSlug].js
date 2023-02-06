@@ -188,7 +188,7 @@ const QuizPage = ({ quizInfo }) => {
             borderTop: `3px solid ${quiz?.category?.categoryColor?.hex}`,
           }}
         >
-          <div className="page-shadow"></div>
+          <div className="page-shadow !top-[calc(4rem_-_3px)]"></div>
           <div className="z-50 bg-white-500">
             {!finished ? (
               <>
@@ -214,18 +214,39 @@ const QuizPage = ({ quizInfo }) => {
                 </div>
                 <div className="flex justify-between items-end gap-2 sticky bottom-0 bg-white-500 py-4">
                   {hasPrev() ? (
-                    <button onClick={prevQuestion} className="btn-outline">
+                    <button
+                      onClick={prevQuestion}
+                      className="btn-outline font-t text-xs font-bold tracking-sm"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                      >
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                      </svg>
                       Prev
                     </button>
                   ) : (
                     <button
-                      className="btn-outline cursor-not-allowed opacity-50"
+                      className="btn-outline cursor-not-allowed opacity-50 font-t text-xs font-bold tracking-sm"
                       onClick={(e) => e.preventDefault()}
                     >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                      >
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
+                      </svg>
                       Prev
                     </button>
                   )}
-                  <div className="w-full bg-gray-200 h-2.5 transition-all">
+                  <div className="grow bg-gray-200 h-2.5 transition-all">
                     <div
                       className="bg-midnight-600 h-2.5"
                       style={{
@@ -236,11 +257,26 @@ const QuizPage = ({ quizInfo }) => {
                     ></div>
                   </div>
                   {hasNext() ? (
-                    <button onClick={nextQuestion} className="btn-outline">
+                    <button
+                      onClick={nextQuestion}
+                      className="btn-outline inline-block font-t text-xs font-bold tracking-sm"
+                    >
                       Next
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                      >
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
+                      </svg>
                     </button>
                   ) : (
-                    <button className="btn-outline" onClick={finishQuiz}>
+                    <button
+                      className="btn-outline font-t text-xs font-bold tracking-sm"
+                      onClick={finishQuiz}
+                    >
                       Submit
                     </button>
                   )}

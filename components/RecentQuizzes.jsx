@@ -87,7 +87,6 @@ const RecentQuizzes = () => {
     );
   }
 
-  console.log(recentQuizzes);
   return (
     <fieldset className="border border-midnight-100">
       <legend className="mx-auto px-3 font-h text-3xl font-bold">
