@@ -11,7 +11,7 @@
     <a href="https://github.com/hrshainik/biofidelicx-quizzard/issues">Report Bug</a>
     ·
     <a href="https://github.com/hrshainik/biofidelicx-quizzard/issues">Request Feature</a>
-  </p>j
+  </p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
