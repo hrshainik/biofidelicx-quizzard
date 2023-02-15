@@ -22,7 +22,7 @@ const CategoryCard = ({ title, image, icon, slug, quizzes, id }) => {
         <span className="text-base">
           {quizzes.length} {quizzes.length > 1 ? "quizzes" : "quiz"}
         </span>
-        <h3 className="font-h text-2xl font-bold">{title}</h3>
+        <h2 className="font-h text-2xl font-bold">{title}</h2>
       </div>
     </Link>
   );

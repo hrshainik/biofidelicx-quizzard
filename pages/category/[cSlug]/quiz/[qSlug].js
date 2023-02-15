@@ -165,7 +165,7 @@ const QuizPage = ({ quizInfo }) => {
           name="keywords"
           content="biofidelicX quizzard, biofidelicX academy"
         />
-        <meta name="author" content="dynamic text" />
+        <meta name="author" content="Habibur Rahman" />
         <meta
           property="og:url"
           content={`https://biofidelicx-quizzard.vercel.app/post/dynamic-text`}
@@ -284,9 +284,9 @@ const QuizPage = ({ quizInfo }) => {
               </>
             ) : (
               <>
-                <h3 className="text-center m-auto mb-4 w-3/4 max-w-xl font-h text-2xl font-semibold sm:text-3xl md:text-4xl">
+                <h2 className="text-center m-auto mb-4 w-3/4 max-w-xl font-h text-2xl font-semibold sm:text-3xl md:text-4xl">
                   Quiz Result
-                </h3>
+                </h2>
                 <div className="p-3 pt-0 flex flex-col items-center mb-5">
                   <div className="relative h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36">
                     {result >= 80 ? (

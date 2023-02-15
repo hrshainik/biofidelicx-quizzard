@@ -15,6 +15,7 @@ const Header = ({ title, imageUrl, slug, subText, color }) => {
       <main className="hero bg-gradient-to-b from-midnight-500 to-transparent">
         <Image
           className="-z-10"
+          priority
           src={imageUrl}
           alt="hero"
           layout="fill"

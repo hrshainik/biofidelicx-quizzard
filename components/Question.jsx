@@ -54,7 +54,7 @@ const Question = ({ questionText, correctQuestion, id }) => {
           />
         </svg>
       </div>
-      <h3 className="text-2xl font-h text-center">{questionText}</h3>
+      <h2 className="text-2xl font-h text-center">{questionText}</h2>
     </div>
   );
 };

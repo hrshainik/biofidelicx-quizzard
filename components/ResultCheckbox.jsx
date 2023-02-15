@@ -10,11 +10,6 @@ const ResultCheckbox = ({
   const wrongAns = selectedAns.filter(
     (ans) => correctAnsArr.indexOf(ans) == -1
   );
-  // console.log("wrongAns:", wrongAns);
-  // console.log("correctAns:", correctAns);
-  // console.log("correctAnsArr:", correctAnsArr);
-  // console.log("selectedAns:", selectedAns);
-  // console.log("handleCorrectAns:", handleCorrectAns);
 
   return (
     <div className="checkbox" onLoad={handleCorrectAns}>

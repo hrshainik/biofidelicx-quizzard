@@ -25,6 +25,7 @@ const Footer = () => {
         <ul className="mb-8 flex flex-wrap items-center justify-center gap-4 uppercase lg:gap-16">
           <li>
             <a
+              aria-label="facebook"
               href="https://www.facebook.com/biofidelicx"
               className="flex items-center gap-1"
             >
@@ -43,6 +44,7 @@ const Footer = () => {
           </li>
           <li>
             <a
+              aria-label="instagram"
               href="https://instagram.com/biofidelicx"
               className="flex items-center gap-1"
             >
@@ -61,6 +63,7 @@ const Footer = () => {
           </li>
           <li>
             <a
+              aria-label="youtube"
               href="https://www.youtube.com/channel/UCFwsPbrNazt7_hR91raqLPA"
               className="flex items-center gap-1"
             >
@@ -79,6 +82,7 @@ const Footer = () => {
           </li>
           <li>
             <a
+              aria-label="twitter"
               href="https://twitter.com/biofidelicx"
               className="flex items-center gap-1"
             >
@@ -97,6 +101,7 @@ const Footer = () => {
           </li>
           <li>
             <a
+              aria-label="linkedin"
               href="https://www.linkedin.com/company/biofidelicx-academy"
               className="flex items-center gap-1"
             >

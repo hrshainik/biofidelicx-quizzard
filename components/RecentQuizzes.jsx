@@ -111,7 +111,7 @@ const RecentQuizzes = () => {
                 <span className="text-xs">
                   {moment(quiz.createdAt).format("MMM DD, YYYY")}
                 </span>
-                <h3 className="font-h text-base">{quiz?.title}</h3>
+                <h2 className="font-h text-base">{quiz?.title}</h2>
                 <span className="mr-2 text-xs">
                   {quiz.questions.length} questions
                 </span>

@@ -41,7 +41,6 @@ const SpecificCategoryPage = ({ categoryInfo }) => {
     <>
       <Head>
         <title>{category?.title} - biofidelicX quizzard</title>
-        <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="X-UA-Compatible" content="IE=7" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />

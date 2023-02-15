@@ -11,8 +11,6 @@ const Navbar = () => {
   const router = useRouter();
   const currentRoute = router.pathname;
 
-  console.log(currentUser);
-
   const logoutHandler = () => {
     try {
       const res = logout();
@@ -32,7 +30,6 @@ const Navbar = () => {
   };
 
   const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -54,7 +51,11 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <Link href="/">
-          <a className="navbar-logo" onClick={closeMobileMenu}>
+          <a
+            aria-label="logo"
+            className="navbar-logo"
+            onClick={() => setClick(false)}
+          >
             <svg
               viewBox="0 0 28 43"
               fill="none"
@@ -149,78 +150,89 @@ const Navbar = () => {
           </svg>
         </div>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
-          <Link href="/">
-            <a onClick={closeMobileMenu}>
-              <li
-                className={`nav-item ${
-                  currentRoute === "/" ? "nav-active" : null
-                }`}
+          <li
+            className={`nav-item ${currentRoute === "/" ? "nav-active" : null}`}
+          >
+            <Link href="/">
+              <a
+                onClick={handleClick}
+                className="w-full h-full flex justify-center items-center"
               >
                 Home
-              </li>
-            </a>
-          </Link>
-          <Link href="https://biofidelicx-diary.vercel.app">
-            <a onClick={closeMobileMenu}>
-              <li
-                className="nav-item"
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-              >
-                Blog
-              </li>
-            </a>
-          </Link>
-          <Link href="/about">
-            <a onClick={closeMobileMenu}>
-              <li
-                className={`nav-item ${
-                  currentRoute === "/about" ? "nav-active" : null
-                }`}
-              >
-                About
-              </li>
-            </a>
-          </Link>
-          <Link href="/contact">
-            <a onClick={closeMobileMenu}>
-              <li
-                className={`nav-item ${
-                  currentRoute === "/contact" ? "nav-active" : null
-                }`}
-              >
-                Contact
-              </li>
-            </a>
-          </Link>
-          {!currentUser ? (
-            <Link href="/sign-up">
-              <a onClick={closeMobileMenu}>
-                <li
-                  className={`nav-item ${
-                    currentRoute === "/sign-up" ? "nav-active" : null
-                  }`}
-                >
-                  Sign Up
-                </li>
               </a>
             </Link>
-          ) : (
-            <a
-              onClick={() => {
-                logoutHandler();
-                closeMobileMenu();
-              }}
+          </li>
+          <li className="nav-item">
+            <Link href="https://biofidelicx-diary.vercel.app">
+              <a
+                onClick={handleClick}
+                className="w-full h-full flex justify-center items-center"
+              >
+                Blog
+              </a>
+            </Link>
+          </li>
+          <li
+            className={`nav-item ${
+              currentRoute === "/about" ? "nav-active" : null
+            }`}
+          >
+            <Link href="/about">
+              <a
+                onClick={handleClick}
+                className="w-full h-full flex justify-center items-center"
+              >
+                About
+              </a>
+            </Link>
+          </li>
+          <li
+            className={`nav-item ${
+              currentRoute === "/contact" ? "nav-active" : null
+            }`}
+          >
+            <Link href="/contact">
+              <a
+                onClick={handleClick}
+                className="w-full h-full flex justify-center items-center"
+              >
+                Contact
+              </a>
+            </Link>
+          </li>
+          {!currentUser ? (
+            <li
+              className={`nav-item ${
+                currentRoute === "/sign-up" ? "nav-active" : null
+              }`}
             >
-              <li className="nav-item">
+              <Link href="/sign-up">
+                <a
+                  onClick={handleClick}
+                  className="w-full h-full flex justify-center items-center"
+                >
+                  Sign Up
+                </a>
+              </Link>
+            </li>
+          ) : (
+            <li className="nav-item">
+              <button
+                onClick={() => {
+                  logoutHandler();
+                  handleClick();
+                }}
+                className="w-full h-full flex justify-center items-center uppercase"
+              >
                 {/* {currentUser.displayName} */}
                 Logout
-              </li>
-            </a>
+              </button>
+            </li>
           )}
         </ul>
         <div className="share-link">
           <a
+            aria-label="youtube"
             href="https://www.youtube.com/channel/UCFwsPbrNazt7_hR91raqLPA"
             target="_blank"
             rel="noreferrer"

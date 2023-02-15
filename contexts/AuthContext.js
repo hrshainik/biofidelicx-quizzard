@@ -57,7 +57,7 @@ export function AuthProvider({ children }) {
         router.push("/");
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error("Authentication failed", {
           position: "top-center",
           autoClose: 3000,
@@ -103,7 +103,7 @@ export function AuthProvider({ children }) {
         router.push("/");
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error("Authentication failed", {
           position: "top-center",
           autoClose: 3000,
@@ -140,7 +140,7 @@ export function AuthProvider({ children }) {
         router.push("/");
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error("Authentication failed", {
           position: "top-center",
           autoClose: 3000,
@@ -177,7 +177,7 @@ export function AuthProvider({ children }) {
         router.push("/");
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error("Authentication failed", {
           position: "top-center",
           autoClose: 3000,
@@ -212,7 +212,7 @@ export function AuthProvider({ children }) {
         });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         toast.error("Authentication failed", {
           position: "top-center",
           autoClose: 3000,

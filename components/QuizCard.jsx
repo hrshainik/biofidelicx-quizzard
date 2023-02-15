@@ -39,7 +39,7 @@ const QuizCard = ({
         <div className="p-3 shrink basis-2/3 flex flex-col justify-between">
           <div className="">
             <span className="text-sm">20 Aug, 2020</span>
-            <h3 className="text-xl font-h mb-5">{title}</h3>
+            <h2 className="text-xl font-h mb-5">{title}</h2>
             {/* <p>
               {description.substr(0, 60)}
               {description?.length > 60 && "..."}
