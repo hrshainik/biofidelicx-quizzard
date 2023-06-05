@@ -18,6 +18,10 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
           <meta name="theme-color" content="#05FFDB" />
+          <meta
+            name="google-site-verification"
+            content="V9ErbSOr5t9vAu1FD9SHZQ0HZmSkJEiqo8EXSDnwgJY"
+          />
         </Head>
         <body>
           <Main />
